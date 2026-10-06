@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Logo from '../components/Logo.astro';
 import VegMark from '../components/VegMark.astro';
-import { MENU, rupee, isVeg } from '../lib/menu';
+import DietMarks from '../components/DietMarks.astro';
+import { MENU, rupee, hasVeg, hasNonVeg } from '../lib/menu';
 import { SITE } from '../config/site';
 ---
 
-<Layout title="Menu — HakkaLand, Star Mall Madhyamgram" description="The full HakkaLand menu: soups, dim sum, bao, saté, starters, sizzlers, mains, rice & noodles, desserts and beverages.">
+<Layout title="Menu — HakkaLand, Star Mall Madhyamgram" description="The full HakkaLand menu: soups, momos & bao, satay, starters, sizzlers, tandoori, rice & noodles, Thai curries, Indian gravies & breads, desserts, mocktails and shakes.">
   <header class="bar no-print">
     <div class="container bar-inner">
       <a href="/" class="back">← Back to site</a>
@@ -31,7 +32,7 @@ import { SITE } from '../config/site';
             {c.items.map((item) => (
               <li>
                 <div class="row">
-                  <span class="name"><VegMark veg={isVeg(item)} /> {item.name}{item.bestSeller && <span class="star" title="Best seller">★</span>}</span>
+                  <span class="name"><DietMarks veg={hasVeg(item)} nonveg={hasNonVeg(item)} /> {item.name}{item.bestSeller && <span class="star" title="Best seller">★</span>}</span>
                   {item.variants.length === 1 && <><span class="dots"></span><span class="price">{rupee(item.variants[0].price)}</span></>}
                 </div>
                 {item.desc && <p class="desc">{item.desc}</p>}
@@ -44,7 +45,7 @@ import { SITE } from '../config/site';
         </section>
       ))}
     </div>
-    <p class="foot">★ Best seller · Menu and prices subject to change</p>
+    <p class="foot">Menu and prices subject to change</p>
   </main>
 </Layout>
 

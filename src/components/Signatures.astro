@@ -1,21 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import VegMark from './VegMark.astro';
+import DietMarks from './DietMarks.astro';
 import bao from '../assets/img/bao-oyster-bbq.webp';
 import sate from '../assets/img/sate-hibachi.webp';
-import dimsum from '../assets/img/dimsum-steamer-1.webp';
+import crispy from '../assets/img/crispy-chicken-plate.webp';
 import sizzler from '../assets/img/glazed-sizzler-chicken.webp';
 import noodles from '../assets/img/noodles-chilli-chicken.webp';
 import brownie from '../assets/img/sizzling-brownie.webp';
 
 const dishes = [
-  { img: dimsum, name: 'Har Gao Prawns', cat: 'Dim sum', desc: 'Translucent prawn dumplings, steamed to order. 6 pcs.', price: '₹420', veg: false, best: true },
-  { img: sate, name: 'Balinese Style Chicken Saté', cat: "Chef's special", desc: 'Skewers grilled over a tabletop charcoal hibachi.', price: '₹299', veg: false, best: true },
-  { img: sizzler, name: 'Wok Tossed Suckling Chicken', cat: 'Sizzler', desc: 'Glazed and served hissing with rice or noodles and wok-tossed veg.', price: '₹449', veg: false, best: true },
-  { img: bao, name: 'Oyster BBQ Chicken Bao', cat: 'Bao', desc: 'Sticky oyster-BBQ chicken in pillowy steamed buns. 3 pcs.', price: '₹249', veg: false, best: false },
-  { img: noodles, name: 'Pan Fried Noodles', cat: 'Mains', desc: 'Crisp-edged noodles under a glossy, saucy stir-fry.', price: 'from ₹199', veg: false, best: false },
-  { img: brownie, name: 'Sizzling Brownie', cat: 'Dessert', desc: 'Walnut brownie on a hot plate, vanilla ice cream, chocolate sauce.', price: '₹209', veg: true, best: false },
+  { img: sate, name: 'BBQ Satay', cat: 'World of satay', desc: 'Paneer or chicken skewers, grilled over a tabletop charcoal hibachi.', price: 'from ₹369', veg: 'both' },
+  { img: sizzler, name: 'BBQ Sizzler', cat: 'Sizzlers', desc: 'Chicken, basa, vetki or prawn, served hissing on a cast-iron plate.', price: 'from ₹499', veg: false },
+  { img: bao, name: 'Bao', cat: 'Momo & bao', desc: 'Pillowy steamed buns with paneer or chicken.', price: '₹269', veg: 'both' },
+  { img: crispy, name: 'Crispy Chicken', cat: 'Starters', desc: 'Golden, crunchy and tossed hot from the wok.', price: '₹399', veg: false },
+  { img: noodles, name: 'Pan Fried Noodles', cat: 'Gravy noodles', desc: 'Crisp-edged noodles under a glossy, saucy stir-fry.', price: 'from ₹249', veg: 'both' },
+  { img: brownie, name: 'Brownie with Ice Cream', cat: 'Dessert', desc: 'Warm brownie topped with a scoop of ice cream.', price: '₹299', veg: true },
 ];
 ---
 
@@ -25,7 +25,7 @@ const dishes = [
       <div>
         <p class="eyebrow">Signatures</p>
         <h2 class="h2" id="sig-title">What everyone <em>orders</em></h2>
-        <p class="lead">The plates that keep regulars coming back — from bamboo steamers to cast-iron sizzlers.</p>
+        <p class="lead">The plates that keep regulars coming back — from charcoal satay to cast-iron sizzlers.</p>
       </div>
       <a class="link-arrow" href="#menu">See the full menu <Icon name="arrow" /></a>
     </div>
@@ -35,12 +35,11 @@ const dishes = [
         <li class="dish reveal">
           <div class="dish-img">
             <Image src={d.img} alt={d.name} widths={[400, 640]} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" />
-            {d.best && <span class="tag dish-tag">Best seller</span>}
           </div>
           <div class="dish-body">
             <p class="dish-cat">{d.cat}</p>
             <div class="dish-row">
-              <h3><VegMark veg={d.veg} /> {d.name}</h3>
+              <h3><DietMarks veg={d.veg !== false} nonveg={d.veg !== true} /> {d.name}</h3>
               <span class="dish-price">{d.price}</span>
             </div>
             <p class="dish-desc">{d.desc}</p>
@@ -62,7 +61,6 @@ const dishes = [
   .dish-img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
   .dish-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
   .dish:hover .dish-img img { transform: scale(1.05); }
-  .dish-tag { position: absolute; top: 14px; left: 14px; background: rgba(20, 16, 14, 0.8); backdrop-filter: blur(6px); }
   .dish-body { padding: 20px 22px 24px; }
   .dish-cat { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
   .dish-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }

@@ -6,8 +6,8 @@ import blueLagoon from '../assets/img/drinks-blue-lagoon.webp';
 import masonJars from '../assets/img/drinks-mason-jars.webp';
 import { MENU, rupee } from '../lib/menu';
 
-const featured = ['Jamaican Mojito', 'Blue Lagoon', 'Virgin Sex on the Beach', "Barman's Pitcher", 'Peach Ice Tea', 'Fresh Lime Soda'];
-const beverages = MENU.find((c) => c.slug === 'beverages')?.items ?? [];
+const featured = ['Virgin Mojito', 'Virgin Blue Lagoon', 'Mango Margarita', 'Death by Kiss', 'Peach Iced Tea', 'Fresh Lime Soda'];
+const beverages = MENU.find((c) => c.slug === 'mocktails')?.items ?? [];
 const drinks = featured
   .map((n) => beverages.find((b) => b.name === n))
   .filter((d): d is NonNullable<typeof d> => !!d);
@@ -19,7 +19,7 @@ const drinks = featured
       <p class="eyebrow">The bar</p>
       <h2 class="h2" id="bar-title">Something cold, <em>something glowing</em></h2>
       <p class="lead">
-        The backlit bar anchors the far end of the room. Order a pitcher for the table, a mocktail in a mason jar,
+        The backlit bar anchors the far end of the room. Order a round of mocktails or shakes for the table,
         or ask for the cocktail and beer list.
       </p>
 

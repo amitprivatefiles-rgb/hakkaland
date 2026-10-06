@@ -7,7 +7,7 @@ const mapsQuery = encodeURIComponent('Hakkaland, Star Mall, Jessore Road, Madhya
 export const SITE = {
   name: 'HakkaLand',
   fullName: 'HakkaLand — Restaurant cum Bar',
-  tagline: 'Chinese · Thai · Cantonese',
+  tagline: 'Chinese · Thai · Tandoori',
 
   phone: '+91 74399 91345', // from the District listing
   phoneClean: '917439991345',
@@ -32,7 +32,7 @@ export const SITE = {
     { score: 4.1, count: 570, label: 'Restaurant Guru' },
   ],
 
-  cuisines: ['Chinese', 'Thai', 'Asian', 'Cantonese'],
+  cuisines: ['Chinese', 'Thai', 'Asian', 'North Indian'],
   priceRange: '₹₹',
 
   mapEmbedUrl: `https://www.google.com/maps?q=${mapsQuery}&output=embed`,
