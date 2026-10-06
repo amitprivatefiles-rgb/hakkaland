@@ -1,313 +1,96 @@
 ---
-import NeonText from './NeonText.astro';
-import TileField from './TileField.astro';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { SITE } from '../config/site';
+
+interface Props { base?: string }
+const { base = '' } = Astro.props;
+
+const links = [
+  { href: `${base}#menu`, label: 'Menu' },
+  { href: `${base}#signatures`, label: 'Signatures' },
+  { href: `${base}#bar`, label: 'Bar' },
+  { href: `${base}#gallery`, label: 'Gallery' },
+  { href: `${base}#visit`, label: 'Visit' },
+];
 ---
 
-<header id="main-nav" class="nav-container">
-  <div class="nav-content container-wide">
-    <a href="/" class="nav-logo" aria-label="HakkaLand Home">
-      <NeonText text="HakkaLand" class="logo-text" />
-    </a>
-
-    <nav class="nav-links desktop-only" aria-label="Main Navigation">
-      <a href="#menu" class="nav-link">Menu</a>
-      <a href="#bar" class="nav-link">Bar</a>
-      <a href="#gallery" class="nav-link">Gallery</a>
-      <a href="#visit" class="nav-link">Visit</a>
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <Logo />
+    <nav class="nav-links" aria-label="Main">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
     </nav>
-
-    <div class="nav-actions desktop-only">
-      <button class="btn btn-primary reserve-btn" data-modal-trigger="reserve-modal">
-        Reserve
+    <div class="nav-actions">
+      <a class="nav-phone" href={`tel:+${SITE.phoneClean}`}><Icon name="phone" />{SITE.phone}</a>
+      <button class="btn btn--primary btn--sm nav-reserve" data-reserve>Reserve</button>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer" data-nav-toggle>
+        <Icon name="menu" />
       </button>
     </div>
-
-    <button class="mobile-toggle mobile-only" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span class="hamburger-line top"></span>
-      <span class="hamburger-line middle"></span>
-      <span class="hamburger-line bottom"></span>
-    </button>
   </div>
 
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
-    <TileField opacity={0.1} />
-    <div class="mobile-menu-inner">
-      <nav class="mobile-nav-links">
-        <a href="#menu" class="mobile-link">Menu</a>
-        <a href="#bar" class="mobile-link">Bar</a>
-        <a href="#gallery" class="mobile-link">Gallery</a>
-        <a href="#visit" class="mobile-link">Visit</a>
-      </nav>
-      <div class="mobile-nav-footer">
-        <button class="btn btn-primary reserve-btn-mobile" data-modal-trigger="reserve-modal">
-          Reserve Table
-        </button>
-      </div>
-    </div>
+  <div class="drawer" id="nav-drawer" hidden data-drawer>
+    <nav class="container drawer-links" aria-label="Mobile">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={`tel:+${SITE.phoneClean}`} class="drawer-phone"><Icon name="phone" /> {SITE.phone}</a>
+    </nav>
   </div>
 </header>
 
 <style>
-  .nav-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--nav-height, 80px);
-    z-index: var(--z-sticky, 100);
-    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
-    background-color: transparent;
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    transition: background-color 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+    border-bottom: 1px solid transparent;
   }
+  .nav.is-solid, .nav.is-open {
+    background: rgba(20, 16, 14, 0.88);
+    backdrop-filter: blur(14px) saturate(1.2);
+    border-bottom-color: var(--line);
+  }
+  .nav-inner { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 0.9rem; font-weight: 600; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-actions { display: flex; align-items: center; gap: 16px; }
+  .nav-phone { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--muted); }
+  .nav-phone:hover { color: var(--text); }
+  .nav-phone :global(svg) { width: 16px; height: 16px; }
+  .nav-toggle { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-strong); background: transparent; place-items: center; }
+  .nav-toggle :global(svg) { width: 22px; height: 22px; }
 
-  .nav-container.scrolled {
-    background-color: rgba(14, 11, 10, 0.8); /* --ink with opacity */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
+  .drawer { border-top: 1px solid var(--line); background: rgba(20, 16, 14, 0.97); }
+  .drawer-links { display: grid; padding-block: 12px 24px; }
+  .drawer-links a { padding: 14px 0; font-family: var(--font-display); font-size: 1.5rem; border-bottom: 1px solid var(--line); }
+  .drawer-links .drawer-phone { display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; color: var(--amber); border: 0; }
+  .drawer-phone :global(svg) { width: 18px; height: 18px; }
 
-  .nav-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    padding: 0 2rem;
+  @media (max-width: 1080px) { .nav-phone { display: none; } }
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: grid; }
   }
-
-  .logo-text {
-    font-size: 24px;
-    margin: 0;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .nav-link {
-    font-family: var(--font-neon, 'Josefin Sans', sans-serif);
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 14px;
-    color: white;
-    text-decoration: none;
-    position: relative;
-    padding: 0.5rem 0;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--neon, #FF2E4D);
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .desktop-only {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .desktop-only {
-      display: flex;
-    }
-    .mobile-only {
-      display: none;
-    }
-  }
-
-  /* Hamburger */
-  .mobile-toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    width: 30px;
-    height: 24px;
-    position: relative;
-    z-index: 102; /* Above overlay */
-    padding: 0;
-  }
-
-  .hamburger-line {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: white;
-    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
-  }
-
-  .hamburger-line.top { top: 0; }
-  .hamburger-line.middle { top: 11px; }
-  .hamburger-line.bottom { top: 22px; }
-
-  .mobile-toggle[aria-expanded="true"] .hamburger-line.top {
-    transform: rotate(45deg);
-    top: 11px;
-  }
-  .mobile-toggle[aria-expanded="true"] .hamburger-line.middle {
-    opacity: 0;
-  }
-  .mobile-toggle[aria-expanded="true"] .hamburger-line.bottom {
-    transform: rotate(-45deg);
-    top: 11px;
-  }
-
-  /* Mobile Overlay */
-  .mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--ink, #0E0B0A);
-    z-index: 101;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
-
-  .mobile-overlay.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .mobile-menu-inner {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    width: 100%;
-  }
-
-  .mobile-nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .mobile-link {
-    font-family: var(--font-display, 'Fraunces', serif);
-    font-size: 3rem;
-    color: var(--cream, #F3E6D0);
-    text-decoration: none;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .mobile-nav-footer {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+  @media (min-width: 861px) { .drawer { display: none; } }
+  @media (max-width: 767px) { .nav-reserve { display: none; } } /* the mobile action bar has it */
 </style>
 
 <script>
-  import { gsap } from 'gsap';
-  import Lenis from 'lenis';
+  const nav = document.querySelector<HTMLElement>('[data-nav]')!;
+  const toggle = nav.querySelector<HTMLButtonElement>('[data-nav-toggle]')!;
+  const drawer = nav.querySelector<HTMLElement>('[data-drawer]')!;
 
-  const initNav = () => {
-    const nav = document.getElementById('main-nav');
-    const toggle = document.querySelector('.mobile-toggle');
-    const overlay = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    const mobileFooter = document.querySelector('.mobile-nav-footer');
-    
-    // Scroll detection
-    const handleScroll = () => {
-      if (window.scrollY > 80) {
-        nav?.classList.add('scrolled');
-      } else {
-        nav?.classList.remove('scrolled');
-      }
-    };
+  const onScroll = () => nav.classList.toggle('is-solid', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Init state
-
-    // Smooth scroll for nav links (if Lenis is not globally handling hash links)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const target = document.querySelector(targetId);
-        if (target) {
-          e.preventDefault();
-          // Assuming window.lenis exists globally, otherwise fallback
-          if (window.lenis) {
-            window.lenis.scrollTo(target);
-          } else {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          
-          // Close mobile menu if open
-          if (toggle?.getAttribute('aria-expanded') === 'true') {
-            closeMobileMenu();
-          }
-        }
-      });
-    });
-
-    // Mobile menu toggle
-    let menuOpen = false;
-    let menuAnim: gsap.core.Timeline | null = null;
-
-    const openMobileMenu = () => {
-      menuOpen = true;
-      toggle?.setAttribute('aria-expanded', 'true');
-      overlay?.classList.add('is-open');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-
-      // Animate links
-      if (menuAnim) menuAnim.kill();
-      menuAnim = gsap.timeline();
-      
-      menuAnim.to(mobileLinks, {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power3.out',
-        delay: 0.2
-      }).to(mobileFooter, {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: 'power3.out'
-      }, '-=0.4');
-    };
-
-    const closeMobileMenu = () => {
-      menuOpen = false;
-      toggle?.setAttribute('aria-expanded', 'false');
-      overlay?.classList.remove('is-open');
-      document.body.style.overflow = '';
-      
-      if (menuAnim) menuAnim.kill();
-      gsap.set([mobileLinks, mobileFooter], { y: 20, opacity: 0 });
-    };
-
-    toggle?.addEventListener('click', () => {
-      if (menuOpen) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    });
+  const setOpen = (open: boolean) => {
+    drawer.hidden = !open;
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   };
-
-  document.addEventListener('DOMContentLoaded', initNav);
-  document.addEventListener('astro:page-load', initNav);
+  toggle.addEventListener('click', () => setOpen(drawer.hidden));
+  drawer.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 </script>

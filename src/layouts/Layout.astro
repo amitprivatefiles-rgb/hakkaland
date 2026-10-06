@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = 'HakkaLand — Chinese, Thai & Cantonese Restaurant & Bar | Star Mall, Madhyamgram',
-  description = 'Dimsum, saté, sizzlers and wok-fired noodles under glowing brick arches. HakkaLand, 5th floor, Star Mall, Jessore Road, Madhyamgram, Kolkata.',
+  description = 'Dim sum, saté, sizzlers and wok-fired noodles under glowing brick arches. HakkaLand, 5th floor, Star Mall, Jessore Road, Madhyamgram, Kolkata.',
 } = Astro.props;
 
 const ld = {
@@ -40,7 +40,7 @@ const ld = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#120d0c" />
+    <meta name="theme-color" content="#14100e" />
     <meta property="og:type" content="restaurant" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -51,9 +51,8 @@ const ld = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&text=%E5%AE%A2%E5%AE%B6%E5%9C%B0&display=swap" />
 
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
@@ -62,12 +61,12 @@ const ld = {
     <a class="skip" href="#main">Skip to content</a>
     <slot />
     <script>
-      // Reveal sections as they scroll into view (content stays visible without JS / with reduced motion).
+      // Fade sections in as they enter the viewport. Content is visible without JS.
       const els = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
           for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
         els.forEach((el) => io.observe(el));
       } else els.forEach((el) => el.classList.add('in'));
     </script>

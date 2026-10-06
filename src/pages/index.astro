@@ -1,97 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import Preloader from '../components/sections/Preloader.astro';
-import Hero from '../components/sections/Hero.astro';
-import MarqueeBand from '../components/sections/MarqueeBand.astro';
-import Story from '../components/sections/Story.astro';
-import SignatureDishes from '../components/sections/SignatureDishes.astro';
-import TheSizzle from '../components/sections/TheSizzle.astro';
-import InteractiveMenu from '../components/sections/InteractiveMenu.astro';
-import TheBar from '../components/sections/TheBar.astro';
-import DayNight from '../components/sections/DayNight.astro';
-import Celebrate from '../components/sections/Celebrate.astro';
-import Gallery from '../components/sections/Gallery.astro';
-import LoveNotes from '../components/sections/LoveNotes.astro';
-import Visit from '../components/sections/Visit.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Signatures from '../components/Signatures.astro';
+import MenuSection from '../components/MenuSection.astro';
+import Bar from '../components/Bar.astro';
+import Celebrate from '../components/Celebrate.astro';
+import Gallery from '../components/Gallery.astro';
+import Visit from '../components/Visit.astro';
 import Footer from '../components/Footer.astro';
-import ReserveModal from '../components/ReserveModal.astro';
-import MobileActionBar from '../components/MobileActionBar.astro';
+import ReserveDialog from '../components/ReserveDialog.astro';
+import MobileBar from '../components/MobileBar.astro';
 ---
 
-<Layout title="HakkaLand - Premium Chinese & Asian Cuisine">
-  <Preloader />
+<Layout>
   <Nav />
-  <main>
+  <main id="main">
     <Hero />
-    <div class="section-divider"></div>
-    <MarqueeBand />
-    <div class="section-divider"></div>
-    <Story />
-    <div class="section-divider"></div>
-    <SignatureDishes />
-    <div class="section-divider"></div>
-    <TheSizzle />
-    <div class="section-divider"></div>
-    <InteractiveMenu />
-    <div class="section-divider"></div>
-    <TheBar />
-    <div class="section-divider"></div>
-    <DayNight />
-    <div class="section-divider"></div>
+    <About />
+    <Signatures />
+    <MenuSection />
+    <Bar />
     <Celebrate />
-    <div class="section-divider"></div>
     <Gallery />
-    <div class="section-divider"></div>
-    <LoveNotes />
-    <div class="section-divider"></div>
     <Visit />
   </main>
   <Footer />
-  <ReserveModal />
-  <MobileActionBar />
+  <ReserveDialog />
+  <MobileBar />
 </Layout>
-
-<script>
-  import Lenis from 'lenis';
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-    });
-
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time: number) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-  }
-
-  // Section divider animation
-  gsap.utils.toArray<HTMLElement>('.section-divider').forEach((divider) => {
-    gsap.fromTo(divider, 
-      { scaleX: 0, transformOrigin: 'left center' },
-      {
-        scaleX: 1,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: divider,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-  });
-</script>

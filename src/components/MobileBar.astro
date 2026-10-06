@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { SITE } from '../config/site';
+---
+
+<nav class="mbar" aria-label="Quick actions">
+  <a href={`tel:+${SITE.phoneClean}`}><Icon name="phone" /> Call</a>
+  <a href={SITE.whatsappUrl} target="_blank" rel="noopener"><Icon name="whatsapp" /> WhatsApp</a>
+  <button class="mbar-primary" data-reserve><Icon name="calendar" /> Reserve</button>
+</nav>
+
+<style>
+  .mbar { display: none; }
+  @media (max-width: 767px) {
+    .mbar {
+      position: fixed; inset: auto 0 0 0; z-index: 40;
+      display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 8px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(20, 16, 14, 0.94); backdrop-filter: blur(14px); border-top: 1px solid var(--line);
+    }
+    .mbar a, .mbar button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; border-radius: 12px; font-size: 0.9rem; font-weight: 700;
+      background: var(--surface); border: 1px solid var(--line);
+    }
+    .mbar :global(svg) { width: 18px; height: 18px; }
+    .mbar .mbar-primary { background: var(--neon); border-color: var(--neon); color: #fff; }
+  }
+</style>
