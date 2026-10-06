@@ -30,3 +30,4 @@ export const MENU: MenuCategory[] = (raw as RawCategory[]).map((c) => ({
 export const rupee = (n: number) => `₹${n.toLocaleString('en-IN')}`;
 export const isVeg = (i: MenuItem) => i.variants.every((v) => v.veg);
 export const hasVeg = (i: MenuItem) => i.variants.some((v) => v.veg);
+export const hasNonVeg = (i: MenuItem) => i.variants.some((v) => !v.veg);

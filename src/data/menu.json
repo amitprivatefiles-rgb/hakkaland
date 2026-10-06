@@ -3,353 +3,574 @@
     "category": "Soup",
     "items": [
       {
-        "name": "Tom Yam",
-        "desc": "Classic hot & sour Thai soup",
-        "bestSeller": true,
-        "variants": [
-          { "label": "Chicken", "price": 149, "veg": false },
-          { "label": "Prawns", "price": 199, "veg": false }
-        ]
-      },
-      {
         "name": "Manchow",
-        "desc": "Hot & spicy thick soup, topped with fried noodles",
         "variants": [
-          { "label": "Veg", "price": 120, "veg": true },
-          { "label": "Chicken", "price": 140, "veg": false },
-          { "label": "Prawns", "price": 160, "veg": false }
-        ]
-      }
-    ]
-  },
-  {
-    "category": "Salad",
-    "items": [
-      {
-        "name": "Asian Salad",
-        "desc": "Assorted veg, American corn, Thai chili dressing, optional grilled chicken",
-        "variants": [
-          { "label": "Chicken", "price": 200, "veg": false },
-          { "label": "Veg", "price": 150, "veg": true }
-        ]
-      }
-    ]
-  },
-  {
-    "category": "Momo",
-    "items": [
-      {
-        "name": "Chicken Momo",
-        "desc": "6 pcs",
-        "veg": false,
-        "variants": [
-          { "label": "Wok-tossed", "price": 200 },
-          { "label": "Tossed in creamy spicy sauce", "price": 220 }
+          {
+            "label": "Veg",
+            "price": 150,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 180,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Veg Momo",
-        "desc": "6 pcs",
-        "veg": true,
+        "name": "Hot & Sour",
         "variants": [
-          { "label": "Wok-tossed", "price": 160 },
-          { "label": "Tossed in creamy spicy sauce", "price": 180 }
+          {
+            "label": "Veg",
+            "price": 150,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 180,
+            "veg": false
+          }
         ]
-      }
-    ]
-  },
-  {
-    "category": "Dimsum",
-    "items": [
+      },
       {
-        "name": "Har Gao Prawns",
-        "desc": "Steamed, 6 pcs",
-        "bestSeller": true,
-        "price": 420,
+        "name": "Sweet Corn",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 150,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 180,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Lemon Coriander",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 150,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 180,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Clear Soup Chicken",
+        "price": 160,
         "veg": false
       },
       {
-        "name": "Chinese Mushroom",
-        "desc": "Steamed, 6 pcs",
+        "name": "Chicken Lung Fung Soup",
+        "price": 200,
+        "veg": false
+      }
+    ]
+  },
+  {
+    "category": "Momo & Bao",
+    "items": [
+      {
+        "name": "Chicken Steam Momo",
         "price": 220,
-        "veg": true
-      },
-      {
-        "name": "Chicken Siu Mai",
-        "desc": "Steamed, 6 pcs",
-        "price": 199,
         "veg": false
       },
       {
-        "name": "Prawns Siu Mai",
-        "desc": "Steamed, 6 pcs",
-        "price": 349,
-        "veg": false
-      }
-    ]
-  },
-  {
-    "category": "Bao",
-    "items": [
-      {
-        "name": "Oyster BBQ Chicken",
-        "desc": "3 pcs",
+        "name": "Chicken Pan Fried Momo",
         "price": 249,
         "veg": false
       },
       {
-        "name": "Oyster BBQ Cottage Cheese",
-        "desc": "3 pcs",
-        "price": 199,
-        "veg": true
+        "name": "Chicken Wok Toss Momo",
+        "price": 249,
+        "veg": false
+      },
+      {
+        "name": "Bao",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 269,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 269,
+            "veg": false
+          }
+        ]
       }
     ]
   },
   {
-    "category": "Chef's Special Saté",
-    "sectionDesc": "Southeast Asian seasoned skewers, grilled; 6 pcs",
+    "category": "Omelette",
     "items": [
       {
-        "name": "Balinese Style Chicken",
-        "bestSeller": true,
+        "name": "Egg Bhurji",
+        "price": 150,
+        "veg": false
+      },
+      {
+        "name": "Masala Omelette",
+        "price": 199,
+        "veg": false
+      },
+      {
+        "name": "Oriental Omelette",
+        "price": 249,
+        "veg": false
+      },
+      {
+        "name": "Cheese Chicken Omelette",
         "price": 299,
         "veg": false
+      }
+    ]
+  },
+  {
+    "category": "World of Satay",
+    "items": [
+      {
+        "name": "BBQ Satay",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          }
+        ]
       },
       {
         "name": "Pattaya Chicken",
-        "price": 299,
-        "veg": false
-      },
-      {
-        "name": "Pattaya Prawns",
-        "price": 350,
-        "veg": false
-      },
-      {
-        "name": "Sezchuan BBQ Chicken",
-        "price": 299,
-        "veg": false
-      },
-      {
-        "name": "Sezchuan BBQ Cottage Cheese",
-        "price": 265,
-        "veg": true
-      }
-    ]
-  },
-  {
-    "category": "Starters Non-Veg",
-    "items": [
-      {
-        "name": "Wasabi Prawns",
-        "desc": "Crispy batter-fried prawns in creamy wasabi sauce",
-        "bestSeller": true,
-        "price": 350,
-        "veg": false
-      },
-      {
-        "name": "Calamari Ring",
-        "desc": "With homemade dipping sauce",
-        "price": 320,
-        "veg": false
-      },
-      {
-        "name": "Mutton Pepper Fry",
-        "desc": "Double-cooked boneless mutton, homemade dry spices",
-        "bestSeller": true,
-        "price": 400,
-        "veg": false
-      },
-      {
-        "name": "Sezchuan BBQ Chicken Wing",
-        "desc": "Smoky spicy sauce",
-        "price": 299,
-        "veg": false
-      },
-      {
-        "name": "Kung Pao",
-        "variants": [
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Fish", "price": 299, "veg": false },
-          { "label": "Calamari", "price": 299, "veg": false }
-        ]
-      },
-      {
-        "name": "Butter Garlic",
-        "variants": [
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Calamari", "price": 299, "veg": false }
-        ]
-      },
-      {
-        "name": "Black Pepper",
-        "variants": [
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false }
-        ]
-      },
-      {
-        "name": "Chili Basil Chicken",
-        "price": 299,
-        "veg": false
-      },
-      {
-        "name": "Lemon Fried Fish",
-        "price": 320,
+        "price": 399,
         "veg": false
       }
     ]
   },
   {
-    "category": "Starters Veg",
+    "category": "Starter Veg",
     "items": [
       {
-        "name": "Thai Cigar Roll",
-        "desc": "Thai vegetables with exotic herbs rolled in spring-roll sheet, deep fried",
-        "bestSeller": true,
-        "price": 199,
+        "name": "Crispy Corn Salt & Pepper",
+        "price": 259,
         "veg": true
       },
       {
         "name": "Crispy Chilli Baby Corn",
+        "price": 259,
+        "veg": true
+      },
+      {
+        "name": "Crispy Chilli Potato",
+        "price": 259,
+        "veg": true
+      },
+      {
+        "name": "Chilli Mushroom",
+        "price": 299,
+        "veg": true
+      },
+      {
+        "name": "Manchurian",
+        "price": 259,
+        "veg": true
+      },
+      {
+        "name": "Butter Garlic Paneer",
+        "price": 369,
+        "veg": true
+      },
+      {
+        "name": "Peanut Masala",
         "price": 199,
         "veg": true
       },
       {
-        "name": "Crispy Corn Fritter",
-        "price": 199,
+        "name": "Satay Veg",
+        "price": 259,
         "veg": true
       },
       {
-        "name": "Head Tod Mushroom",
-        "desc": "Button mushroom in tamarind Manchurian sauce",
-        "price": 199,
+        "name": "Salt & Pepper Mushroom",
+        "price": 299,
         "veg": true
+      }
+    ]
+  },
+  {
+    "category": "Starter Non-Veg",
+    "items": [
+      {
+        "name": "Wasabi Prawn",
+        "price": 499,
+        "veg": false
       },
       {
-        "name": "Black Pepper",
+        "name": "Lemon Fried Fish",
         "variants": [
-          { "label": "Cottage Cheese", "price": 199, "veg": true },
-          { "label": "Mushroom", "price": 199, "veg": true }
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          }
         ]
+      },
+      {
+        "name": "BBQ Wings",
+        "price": 399,
+        "veg": false
       },
       {
         "name": "Kung Pao",
         "variants": [
-          { "label": "Cottage Cheese", "price": 220, "veg": true },
-          { "label": "Mushroom", "price": 220, "veg": true }
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Butter Garlic Cottage Cheese",
-        "price": 220,
-        "veg": true
+        "name": "Chicken Lollipop",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Honey Mustard Fish",
+        "variants": [
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Salt & Pepper",
+        "variants": [
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Pan Fried",
+        "variants": [
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 780,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Crispy Chicken",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Butter Garlic",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Chicken 65",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Dragon Chicken",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Chicken Wrap Prawn",
+        "price": 499,
+        "veg": false
+      },
+      {
+        "name": "Crunchy Chicken Strips",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Chilli",
+        "variants": [
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Green Chilli",
+        "variants": [
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "BBQ Fish",
+        "variants": [
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          }
+        ]
       }
     ]
   },
   {
     "category": "Sizzlers",
-    "sectionDesc": "All served with fried rice/noodles and wok-tossed veg",
     "items": [
       {
-        "name": "Char Siu Cottage Cheese Steak",
-        "price": 429,
-        "veg": true
+        "name": "BBQ Sizzler",
+        "variants": [
+          {
+            "label": "Chicken",
+            "price": 499,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 499,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 649,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 599,
+            "veg": false
+          }
+        ]
       },
       {
-        "name": "Wok Tossed Suckling Chicken",
-        "bestSeller": true,
-        "price": 449,
-        "veg": false
-      },
-      {
-        "name": "Oyster Chili Prawns",
-        "price": 549,
+        "name": "Tawa Murgh Kebab",
+        "price": 499,
         "veg": false
       }
     ]
   },
   {
-    "category": "Main Course",
+    "category": "Tandoori Starter Veg",
     "items": [
       {
-        "name": "Thai Curry Red/Green",
+        "name": "Peshawari Paneer Tikka",
+        "price": 369,
+        "veg": true
+      },
+      {
+        "name": "Achari Paneer Tikka",
+        "price": 369,
+        "veg": true
+      },
+      {
+        "name": "Moti Malai Mushroom",
+        "price": 359,
+        "veg": true
+      },
+      {
+        "name": "Tandoori Aloo",
+        "price": 349,
+        "veg": true
+      }
+    ]
+  },
+  {
+    "category": "Tandoori Starter Non-Veg",
+    "items": [
+      {
+        "name": "Tandoori Murgh",
         "variants": [
-          { "label": "Veg", "price": 240, "veg": true },
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Seafood", "price": 320, "veg": false }
+          {
+            "label": "Half",
+            "price": 499,
+            "veg": false
+          },
+          {
+            "label": "Full",
+            "price": 799,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Lamb Randang",
-        "desc": "Lamb slow-cooked in lemongrass, Thai ginger, chili, shallot, coconut milk",
+        "name": "Murgh Tikka Kebab",
         "price": 399,
         "veg": false
       },
       {
-        "name": "Pan Fried Noodles",
+        "name": "Reshmi Kebab",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Murgh Malai Kebab",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Murgh Lasuni Kebab",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Murgh Irani Kebab",
+        "price": 399,
+        "veg": false
+      },
+      {
+        "name": "Fish Tikka Kebab",
         "variants": [
-          { "label": "Veg", "price": 199, "veg": true },
-          { "label": "Chicken", "price": 220, "veg": false },
-          { "label": "Prawns", "price": 280, "veg": false }
+          {
+            "label": "Basa",
+            "price": 449,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 799,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Asian Biryani",
-        "desc": "With mint sauce",
+        "name": "Fish Lasuni Kebab",
         "variants": [
-          { "label": "Chicken", "price": 249, "veg": false },
-          { "label": "Mutton", "price": 280, "veg": false },
-          { "label": "Prawns", "price": 299, "veg": false }
+          {
+            "label": "Basa",
+            "price": 449,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 799,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Black Bean Chilli",
+        "name": "Gandharaj Fish Tikka",
         "variants": [
-          { "label": "Paneer", "price": 299, "veg": true },
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false }
+          {
+            "label": "Basa",
+            "price": 449,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 799,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Galangal Sezchuan",
-        "variants": [
-          { "label": "Paneer", "price": 299, "veg": true },
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false }
-        ]
-      },
-      {
-        "name": "Butter Garlic",
-        "variants": [
-          { "label": "Paneer", "price": 299, "veg": true },
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false }
-        ]
-      },
-      {
-        "name": "Hot Garlic",
-        "variants": [
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false }
-        ]
-      },
-      {
-        "name": "Chilli",
-        "variants": [
-          { "label": "Chicken", "price": 299, "veg": false },
-          { "label": "Fish", "price": 320, "veg": false },
-          { "label": "Prawns", "price": 350, "veg": false }
-        ]
+        "name": "Chef's Special Chicken Kebab",
+        "price": 499,
+        "veg": false
       }
     ]
   },
@@ -357,122 +578,910 @@
     "category": "Rice & Noodles",
     "items": [
       {
+        "name": "Steamed Rice",
+        "price": 99,
+        "veg": true
+      },
+      {
+        "name": "Peas Pulao",
+        "price": 199,
+        "veg": true
+      },
+      {
+        "name": "Veg Pulao",
+        "price": 199,
+        "veg": true
+      },
+      {
         "name": "Fried Rice",
         "variants": [
-          { "label": "Veg", "price": 155, "veg": true },
-          { "label": "Egg", "price": 165, "veg": false },
-          { "label": "Chicken", "price": 185, "veg": false },
-          { "label": "Prawns", "price": 199, "veg": false },
-          { "label": "Mix", "price": 199, "veg": false }
-        ]
-      },
-      {
-        "name": "Sezchuan Fried Rice",
-        "variants": [
-          { "label": "Veg", "price": 165, "veg": true },
-          { "label": "Egg", "price": 175, "veg": false },
-          { "label": "Chicken", "price": 195, "veg": false },
-          { "label": "Prawns", "price": 210, "veg": false },
-          { "label": "Mix", "price": 210, "veg": false }
-        ]
-      },
-      {
-        "name": "Ginger Celery Fried Rice",
-        "variants": [
-          { "label": "Veg", "price": 165, "veg": true },
-          { "label": "Egg", "price": 175, "veg": false },
-          { "label": "Chicken", "price": 195, "veg": false },
-          { "label": "Prawns", "price": 210, "veg": false },
-          { "label": "Mix", "price": 210, "veg": false }
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
         ]
       },
       {
         "name": "Burnt Garlic Fried Rice",
         "variants": [
-          { "label": "Veg", "price": 165, "veg": true },
-          { "label": "Egg", "price": 175, "veg": false },
-          { "label": "Chicken", "price": 195, "veg": false },
-          { "label": "Prawns", "price": 210, "veg": false },
-          { "label": "Mix", "price": 210, "veg": false }
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Fried Noodles",
+        "name": "Szechuan Rice",
         "variants": [
-          { "label": "Veg", "price": 155, "veg": true },
-          { "label": "Egg", "price": 165, "veg": false },
-          { "label": "Chicken", "price": 185, "veg": false },
-          { "label": "Prawns", "price": 199, "veg": false },
-          { "label": "Mix", "price": 199, "veg": false }
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Sezchuan Fried Noodles",
+        "name": "Coriander Rice",
         "variants": [
-          { "label": "Veg", "price": 165, "veg": true },
-          { "label": "Egg", "price": 175, "veg": false },
-          { "label": "Chicken", "price": 195, "veg": false },
-          { "label": "Prawns", "price": 210, "veg": false },
-          { "label": "Mix", "price": 210, "veg": false }
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Ginger Celery Rice",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Hakka Noodles",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
         ]
       },
       {
         "name": "Burnt Garlic Fried Noodles",
         "variants": [
-          { "label": "Veg", "price": 165, "veg": true },
-          { "label": "Egg", "price": 175, "veg": false },
-          { "label": "Chicken", "price": 195, "veg": false },
-          { "label": "Prawns", "price": 210, "veg": false },
-          { "label": "Mix", "price": 210, "veg": false }
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
         ]
       },
       {
-        "name": "Steamed Rice",
-        "price": 99,
+        "name": "Szechuan Fried Noodles",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 195,
+            "veg": true
+          },
+          {
+            "label": "Egg",
+            "price": 209,
+            "veg": false
+          },
+          {
+            "label": "Chicken",
+            "price": 249,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 259,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 259,
+            "veg": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Gravy Noodles",
+    "items": [
+      {
+        "name": "Pan Fried Noodles",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 249,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 359,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 399,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Mongolian Noodles",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 249,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 359,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 399,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "American Chop Suey",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 249,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 359,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Mix",
+            "price": 399,
+            "veg": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Sauce",
+    "items": [
+      {
+        "name": "Manchurian",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 299,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Szechuan",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Butter Garlic",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Hot Garlic",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Classic Chilli",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Green Chilli",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Sweet & Sour",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Lemon",
+        "variants": [
+          {
+            "label": "Paneer",
+            "price": 369,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Thai Curry",
+    "items": [
+      {
+        "name": "Thai Curry Red",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 320,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Thai Curry Green",
+        "variants": [
+          {
+            "label": "Veg",
+            "price": 320,
+            "veg": true
+          },
+          {
+            "label": "Chicken",
+            "price": 399,
+            "veg": false
+          },
+          {
+            "label": "Basa",
+            "price": 420,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 779,
+            "veg": false
+          },
+          {
+            "label": "Prawn",
+            "price": 499,
+            "veg": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Indian Veg Gravy",
+    "items": [
+      {
+        "name": "Yellow Dal Tadka",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Veg Jalfrezi",
+        "price": 349,
+        "veg": true
+      },
+      {
+        "name": "Mushroom Peas Masala",
+        "price": 399,
+        "veg": true
+      },
+      {
+        "name": "Paneer Butter Masala",
+        "price": 419,
+        "veg": true
+      },
+      {
+        "name": "Matar Paneer",
+        "price": 419,
+        "veg": true
+      },
+      {
+        "name": "Kadai Paneer",
+        "price": 419,
         "veg": true
       }
     ]
   },
   {
-    "category": "Desserts",
+    "category": "Indian Non-Veg Gravy",
     "items": [
       {
-        "name": "Sizzling Brownie",
-        "desc": "Walnut brownie on sizzler plate, vanilla ice cream, chocolate sauce",
-        "price": 209,
+        "name": "Murgh Tikka Masala",
+        "price": 449,
+        "veg": false
+      },
+      {
+        "name": "Kadai Murgh",
+        "price": 449,
+        "veg": false
+      },
+      {
+        "name": "Reshmi Murgh Butter Masala",
+        "price": 449,
+        "veg": false
+      },
+      {
+        "name": "Chicken Kosha",
+        "price": 449,
+        "veg": false
+      },
+      {
+        "name": "Mutton Rogan Josh",
+        "price": 719,
+        "veg": false
+      },
+      {
+        "name": "Mutton Do Pyaza",
+        "price": 719,
+        "veg": false
+      },
+      {
+        "name": "Fish Masala",
+        "variants": [
+          {
+            "label": "Basa",
+            "price": 489,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 799,
+            "veg": false
+          }
+        ]
+      },
+      {
+        "name": "Dhaniya Fish Masala",
+        "variants": [
+          {
+            "label": "Basa",
+            "price": 489,
+            "veg": false
+          },
+          {
+            "label": "Vetki",
+            "price": 799,
+            "veg": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Indian Breads",
+    "items": [
+      {
+        "name": "Tandoori Roti",
+        "price": 25,
         "veg": true
       },
       {
-        "name": "Tres Leches",
-        "bestSeller": true,
+        "name": "Tandoori Butter Roti",
+        "price": 35,
+        "veg": true
+      },
+      {
+        "name": "Naan",
+        "price": 50,
+        "veg": true
+      },
+      {
+        "name": "Butter Naan",
+        "price": 60,
+        "veg": true
+      },
+      {
+        "name": "Garlic Naan",
+        "price": 75,
+        "veg": true
+      },
+      {
+        "name": "Cheese Naan",
+        "price": 90,
+        "veg": true
+      },
+      {
+        "name": "Masala Kulcha",
+        "price": 70,
+        "veg": true
+      },
+      {
+        "name": "Tandoori Lachha Paratha",
+        "price": 60,
+        "veg": true
+      }
+    ]
+  },
+  {
+    "category": "Dessert",
+    "items": [
+      {
+        "name": "Brownie with Ice Cream",
         "price": 299,
         "veg": true
       },
       {
-        "name": "Nutella Chocolate Spring Roll",
-        "price": 249,
+        "name": "Darsaan",
+        "price": 199,
+        "veg": true
+      },
+      {
+        "name": "Vanilla Ice Cream",
+        "price": 140,
+        "veg": true
+      },
+      {
+        "name": "Chocolate Ice Cream",
+        "price": 150,
+        "veg": true
+      },
+      {
+        "name": "Butterscotch Ice Cream",
+        "price": 160,
         "veg": true
       }
     ]
   },
   {
-    "category": "Beverages",
+    "category": "Mocktails",
     "items": [
-      { "name": "Fresh Lime Soda", "price": 120, "veg": true },
-      { "name": "Cold Coffee", "price": 180, "veg": true },
-      { "name": "Virgin Sex on the Beach", "price": 180, "veg": true },
-      { "name": "Mint Lemonade", "price": 180, "veg": true },
-      { "name": "Blue Lagoon", "price": 180, "veg": true },
-      { "name": "Ginger Ice Tea", "price": 180, "veg": true },
-      { "name": "Lemon Ice Tea", "price": 180, "veg": true },
-      { "name": "Peach Ice Tea", "price": 180, "veg": true },
-      { "name": "Barman's Pitcher", "price": 240, "veg": true },
-      { "name": "Jamaican Mojito", "price": 197, "veg": true },
-      { "name": "What's in a Name", "price": 180, "veg": true },
-      { "name": "Bottled Water", "price": 30, "veg": true },
-      { "name": "Red Bull", "price": 220, "veg": true },
-      { "name": "Juice", "price": 120, "veg": true },
-      { "name": "Aerated Water", "price": 120, "veg": true }
+      {
+        "name": "Fresh Lime Soda",
+        "price": 130,
+        "veg": true
+      },
+      {
+        "name": "Virgin Sex on the Beach",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Mint Lemonade",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Death by Kiss",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Virgin Mojito",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Virgin Blue Lagoon",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "What's in a Name",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Mango Margarita",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Spicy Mango",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Mojito Ginger Orange",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Peach Iced Tea",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Packaged Drinking Water",
+        "price": 40,
+        "veg": true
+      },
+      {
+        "name": "Sprite",
+        "price": 89,
+        "veg": true
+      },
+      {
+        "name": "Thums Up",
+        "price": 89,
+        "veg": true
+      },
+      {
+        "name": "Masala Thums Up",
+        "price": 130,
+        "veg": true
+      }
+    ]
+  },
+  {
+    "category": "Shakes",
+    "items": [
+      {
+        "name": "Cold Coffee",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Chocolate Shake",
+        "price": 219,
+        "veg": true
+      },
+      {
+        "name": "Oreo Shake",
+        "price": 219,
+        "veg": true
+      }
     ]
   }
 ]

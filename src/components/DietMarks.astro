@@ -1,0 +1,14 @@
+---
+import VegMark from './VegMark.astro';
+/** Veg / non-veg marks for a dish; shows both when it comes in veg and non-veg versions. */
+interface Props { veg: boolean; nonveg: boolean }
+const { veg, nonveg } = Astro.props;
+---
+<span class="marks">
+  {veg && <VegMark veg={true} />}
+  {nonveg && <VegMark veg={false} />}
+</span>
+
+<style>
+  .marks { display: inline-flex; gap: 3px; flex: none; }
+</style>

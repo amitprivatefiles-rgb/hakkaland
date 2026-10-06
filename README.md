@@ -1,6 +1,6 @@
 # HakkaLand — Restaurant & Bar Website
 
-> Premium, animation-rich marketing website for HakkaLand, a Chinese/Asian/Cantonese restaurant & bar in Madhyamgram, Kolkata.
+> Premium, animation-rich marketing website for HakkaLand, a Chinese, Thai & tandoori restaurant & bar in Madhyamgram, Kolkata.
 
 ## Quick Start
 
