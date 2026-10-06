@@ -13,65 +13,49 @@ npm run preview  # → preview the built site
 
 ## Tech Stack
 
-- **Astro 5** (static output)
-- **GSAP 3** with ScrollTrigger (scroll-driven animations)
-- **Lenis** (smooth scrolling)
-- **SplitType** (text splitting for animations)
-- **Sharp** (image optimization — AVIF/WebP, responsive srcset)
-- Vanilla TypeScript — no React/Vue
+- **Astro 5** (static output) with `astro:assets` for responsive WebP images
+- Plain CSS with design tokens (`src/styles/global.css`) and component-scoped styles
+- A little vanilla TypeScript for the nav, menu filters, gallery lightbox and reservation form. No animation libraries.
 
 ## Project Structure
 
 ```
 src/
-├── assets/img/          # Restaurant photos (33 images)
+├── assets/img/            # Restaurant photos
 ├── components/
-│   ├── ArchFrame.astro      # SVG arch clip-path with ember LED trace
-│   ├── ChopSeal.astro       # "BEST SELLER" stamp badge
-│   ├── FretCorner.astro     # Chinese key-fret corner ornament
-│   ├── Footer.astro         # Site footer with neon wordmark
-│   ├── MobileActionBar.astro # Sticky Call/WhatsApp/Directions bar
-│   ├── Nav.astro            # Glass nav bar with mobile overlay
-│   ├── NeonText.astro       # Flickering neon text effect
-│   ├── ReserveModal.astro   # Reservation form → WhatsApp
-│   ├── TileField.astro      # Peranakan tile pattern background
-│   └── sections/
-│       ├── Preloader.astro       # SVG wordmark draw + neon flicker
-│       ├── Hero.astro            # Full-viewport hero with Ken Burns
-│       ├── MarqueeBand.astro     # Two-row infinite marquee
-│       ├── Story.astro           # "Under the Arches" pinned section
-│       ├── SignatureDishes.astro # Horizontal scroll dish cards
-│       ├── TheSizzle.astro       # Cinematic brownie sizzle moment
-│       ├── InteractiveMenu.astro # Full menu with search/filter
-│       ├── TheBar.astro          # Drink bento grid + wave effects
-│       ├── DayNight.astro        # Drag comparison slider
-│       ├── Celebrate.astro       # Event cards + WhatsApp CTA
-│       ├── Gallery.astro         # Masonry grid + lightbox
-│       ├── LoveNotes.astro       # Testimonials + rating counters
-│       └── Visit.astro           # Map + contact info
-├── config/
-│   └── site.ts           # All business details (phone, address, hours)
-├── data/
-│   └── menu.json         # Full menu with prices
-├── layouts/
-│   └── Layout.astro      # Base HTML with SEO + JSON-LD
+│   ├── Nav.astro          # Fixed nav, solid on scroll, mobile drawer
+│   ├── Hero.astro         # Full-bleed hero with key facts
+│   ├── About.astro        # The space + features + photo collage
+│   ├── Signatures.astro   # Six signature dish cards
+│   ├── MenuSection.astro  # Tabbed menu with search + veg-only filter
+│   ├── Bar.astro          # Drinks list + photo grid
+│   ├── Celebrate.astro    # Group / party bookings banner
+│   ├── Gallery.astro      # Photo grid + <dialog> lightbox
+│   ├── Visit.astro        # Address, hours, ratings, map
+│   ├── Footer.astro
+│   ├── ReserveDialog.astro # Reservation form → WhatsApp message
+│   ├── MobileBar.astro    # Sticky Call / WhatsApp / Reserve bar on phones
+│   ├── Logo.astro, Icon.astro, VegMark.astro
+├── config/site.ts         # All business details (phone, address, hours)
+├── data/menu.json         # Full menu with prices
+├── lib/menu.ts            # Normalises menu.json for rendering
+├── layouts/Layout.astro   # Base HTML, SEO, JSON-LD
 ├── pages/
-│   ├── index.astro       # Homepage (all sections)
-│   └── menu.astro        # Printable menu page
-└── styles/
-    └── global.css        # Design tokens, typography, base styles
+│   ├── index.astro        # Homepage
+│   └── menu.astro         # Printable full menu
+└── styles/global.css      # Tokens, typography, buttons, base styles
 ```
 
-## Pages
+## Editing content
 
-| Route | Description |
-|---|---|
-| `/` | Main single-page site with all 13 sections |
-| `/menu` | Printable full menu (Ctrl+P friendly) |
+- **Business details** (phone, hours, address, ratings, socials): `src/config/site.ts`
+- **Menu and prices**: `src/data/menu.json`. The homepage menu and `/menu` both read from it.
+- **Signature dishes**: the `dishes` list at the top of `src/components/Signatures.astro`
+- **Gallery photos**: the `photos` list in `src/components/Gallery.astro`
 
-## Design Concept: "Neon under the Arches"
+## Design
 
-The site recreates the experience of walking into HakkaLand from the mall at night — the neon sign flickers on, you pass under glowing brick arches onto patterned tiles, food sizzles, and the bar glows at the back.
+Warm near-black background, brick-amber accents and the neon-pink of the HakkaLand sign. Fraunces (display serif) + Manrope (body). Layout is a centred 1200px container with consistent section spacing; everything collapses cleanly to one column on phones.
 
 ## TODO for the Owner
 
@@ -80,18 +64,17 @@ The site recreates the experience of walking into HakkaLand from the mall at nig
 
 - [ ] **Opening hours** — Currently showing "12 PM – 11 PM" as placeholder. Confirm in `src/config/site.ts`
 - [ ] **Social media links** — Instagram, Zomato, District URLs (currently `#` placeholders)
-- [ ] **Google reviews** — Replace the 3 placeholder testimonials (marked `data-placeholder="true"`) with real Google reviews
+- [ ] **Google reviews** — Share a few real reviews if you'd like a testimonials section (none are shown until then)
 - [ ] **Alcohol/cocktail menu** — Not provided; the bar section describes drinks in words only
 - [ ] **Logo vector** — If an SVG/vector version of the HakkaLand logo exists, replace the text-based wordmark
 - [ ] **Google Maps embed** — Update the embed URL in `src/config/site.ts` with the actual business listing
-- [ ] **Sizzle sound effect** — Add a royalty-free sizzle sound at `public/sounds/sizzle.mp3` (< 60 KB)
 - [ ] **Menu PDF** — Generate a PDF version of the menu for download
 - [ ] **OG image** — Generate a 1200×630 image from the hero + neon wordmark for social sharing
 
 ## Accessibility
 
 - All text/background pairs meet WCAG AA contrast
-- `prefers-reduced-motion` respected: disables flicker, parallax, pinning, smooth scroll
+- `prefers-reduced-motion` respected
 - Semantic HTML headings throughout
 - Alt text on every image
 - Keyboard-accessible lightbox and modal (focus trap, Escape to close)

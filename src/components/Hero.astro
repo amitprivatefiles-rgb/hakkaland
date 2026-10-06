@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import heroImg from '../assets/img/hero-neon-night.webp';
+import { SITE } from '../config/site';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <Image
+    src={heroImg}
+    alt="HakkaLand's neon sign glowing over the dining room at night"
+    class="hero-img"
+    widths={[768, 1360]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <p class="eyebrow">{SITE.address.line1} · Madhyamgram</p>
+    <h1 id="hero-title">
+      Wok fire, dim sum &amp; <em>neon</em> under the arches.
+    </h1>
+    <p class="hero-sub">
+      Chinese, Thai and Cantonese plates, sizzlers and a full bar — served in tufted booths beneath glowing brick arches on Jessore Road.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn btn--primary" data-reserve><Icon name="calendar" /> Reserve a table</button>
+      <a class="btn btn--ghost" href="#menu">Explore the menu <Icon name="arrow" /></a>
+    </div>
+
+    <ul class="hero-facts">
+      <li>
+        <Icon name="star" />
+        <span><strong>{SITE.ratings[0].score}</strong> on {SITE.ratings[0].label} · {SITE.ratings[0].count}+ ratings</span>
+      </li>
+      <li><Icon name="clock" /><span>{SITE.hours}</span></li>
+      <li><Icon name="wallet" /><span>{SITE.costForTwo} for two</span></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative; isolation: isolate;
+    min-height: min(100svh, 940px);
+    display: flex; align-items: flex-end;
+    padding-block: calc(var(--nav-h) + 48px) clamp(48px, 7vw, 88px);
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0; z-index: -2;
+    width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%;
+    animation: hero-zoom 18s ease-out both;
+  }
+  .hero-shade {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(20, 16, 14, 0.92) 0%, rgba(20, 16, 14, 0.7) 38%, rgba(20, 16, 14, 0.15) 75%),
+      linear-gradient(0deg, var(--bg) 0%, rgba(20, 16, 14, 0) 40%),
+      linear-gradient(180deg, rgba(20, 16, 14, 0.7) 0%, rgba(20, 16, 14, 0) 22%);
+  }
+  .hero-content { max-width: calc(var(--container) + var(--gutter) * 2); }
+  h1 {
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    max-width: 11ch;
+  }
+  h1 em {
+    font-style: italic; font-weight: 500; color: var(--neon);
+    text-shadow: 0 0 18px rgba(255, 59, 92, 0.5), 0 0 48px rgba(255, 59, 92, 0.25);
+  }
+  .hero-sub { margin-top: 24px; max-width: 48ch; color: #dccdbf; font-size: clamp(1rem, 1.4vw, 1.15rem); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  .hero-facts {
+    display: flex; flex-wrap: wrap; gap: 12px 32px;
+    margin-top: clamp(40px, 6vw, 64px); padding-top: 24px;
+    border-top: 1px solid var(--line-strong);
+    max-width: 760px;
+    font-size: 0.9rem; color: #dccdbf;
+  }
+  .hero-facts li { display: flex; align-items: center; gap: 10px; }
+  .hero-facts :global(svg) { width: 18px; height: 18px; color: var(--amber); flex: none; }
+  .hero-facts strong { color: var(--text); }
+
+  @media (min-width: 1024px) {
+    .hero-img { left: auto; width: 74%; }
+    .hero-shade {
+      background:
+        linear-gradient(90deg, var(--bg) 26%, rgba(20, 16, 14, 0.75) 40%, rgba(20, 16, 14, 0.1) 70%),
+        linear-gradient(0deg, var(--bg) 0%, rgba(20, 16, 14, 0) 35%),
+        linear-gradient(180deg, rgba(20, 16, 14, 0.7) 0%, rgba(20, 16, 14, 0) 22%);
+    }
+  }
+
+  @keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+  @media (max-width: 640px) {
+    .hero-shade {
+      background:
+        linear-gradient(0deg, var(--bg) 8%, rgba(20, 16, 14, 0.82) 55%, rgba(20, 16, 14, 0.35) 100%);
+    }
+    .hero-ctas .btn { flex: 1 1 100%; }
+    .hero-facts { flex-direction: column; }
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import barShelf from '../assets/img/bar-shelf.webp';
+import mojito from '../assets/img/drinks-mojito.webp';
+import blueLagoon from '../assets/img/drinks-blue-lagoon.webp';
+import masonJars from '../assets/img/drinks-mason-jars.webp';
+import { MENU, rupee } from '../lib/menu';
+
+const featured = ['Jamaican Mojito', 'Blue Lagoon', 'Virgin Sex on the Beach', "Barman's Pitcher", 'Peach Ice Tea', 'Fresh Lime Soda'];
+const beverages = MENU.find((c) => c.slug === 'beverages')?.items ?? [];
+const drinks = featured
+  .map((n) => beverages.find((b) => b.name === n))
+  .filter((d): d is NonNullable<typeof d> => !!d);
+---
+
+<section class="section section--alt bar" id="bar" aria-labelledby="bar-title">
+  <div class="container bar-grid">
+    <div class="bar-copy reveal">
+      <p class="eyebrow">The bar</p>
+      <h2 class="h2" id="bar-title">Something cold, <em>something glowing</em></h2>
+      <p class="lead">
+        The backlit bar anchors the far end of the room. Order a pitcher for the table, a mocktail in a mason jar,
+        or ask for the cocktail and beer list.
+      </p>
+
+      <ul class="drinks">
+        {drinks.map((d) => (
+          <li>
+            <span>{d.name}</span>
+            <span class="dots" aria-hidden="true"></span>
+            <strong>{rupee(d.variants[0].price)}</strong>
+          </li>
+        ))}
+      </ul>
+      <p class="bar-note">Full bar service · beer &amp; cocktail list available at the table.</p>
+    </div>
+
+    <div class="bar-media reveal">
+      <figure class="bm bm-a"><Image src={barShelf} alt="Backlit bar shelves with bottles and glassware" widths={[480, 800]} sizes="(max-width: 900px) 92vw, 560px" /></figure>
+      <figure class="bm bm-b"><Image src={mojito} alt="A mojito with mint and lime" widths={[300, 500]} sizes="(max-width: 900px) 30vw, 180px" /></figure>
+      <figure class="bm bm-c"><Image src={blueLagoon} alt="Blue Lagoon and an iced tea on a tiled table" widths={[300, 500]} sizes="(max-width: 900px) 30vw, 180px" /></figure>
+      <figure class="bm bm-d"><Image src={masonJars} alt="Iced tea served in mason jars" widths={[300, 500]} sizes="(max-width: 900px) 30vw, 180px" /></figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bar-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
+
+  .drinks { margin-top: 36px; display: grid; gap: 14px; max-width: 460px; }
+  .drinks li { display: flex; align-items: baseline; gap: 12px; font-weight: 600; }
+  .dots { flex: 1; border-bottom: 1px dotted var(--line-strong); transform: translateY(-4px); }
+  .drinks strong { font-weight: 800; }
+  .bar-note { margin-top: 24px; font-size: 0.875rem; color: var(--muted); }
+
+  .bar-media {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .bm { margin: 0; overflow: hidden; border-radius: var(--radius); }
+  .bm img { width: 100%; height: 100%; object-fit: cover; }
+  .bm-a { grid-column: 1 / -1; aspect-ratio: 16 / 10; border-radius: var(--radius-lg); }
+  .bm-b, .bm-c, .bm-d { aspect-ratio: 3 / 4; }
+
+  @media (max-width: 900px) {
+    .bar-grid { grid-template-columns: 1fr; }
+    .bar-media { order: -1; }
+  }
+</style>

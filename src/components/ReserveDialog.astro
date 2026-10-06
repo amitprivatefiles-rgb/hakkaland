@@ -1,0 +1,129 @@
+---
+import Icon from './Icon.astro';
+import { SITE } from '../config/site';
+const times = ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'];
+const label = (t: string) => {
+  const [h, m] = t.split(':').map(Number);
+  return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')} ${h < 12 ? 'am' : 'pm'}`;
+};
+---
+
+<dialog class="reserve" aria-labelledby="reserve-title" data-reserve-dialog>
+  <form method="dialog" class="reserve-form" data-reserve-form>
+    <div class="reserve-head">
+      <div>
+        <h2 id="reserve-title">Reserve a table</h2>
+        <p>Send us your details on WhatsApp and we'll confirm your booking.</p>
+      </div>
+      <button type="button" class="close" aria-label="Close" data-reserve-close><Icon name="close" /></button>
+    </div>
+
+    <div class="fields">
+      <label class="field full">
+        <span>Name</span>
+        <input name="name" required autocomplete="name" placeholder="Your name" />
+      </label>
+      <label class="field">
+        <span>Date</span>
+        <input type="date" name="date" required data-date />
+      </label>
+      <label class="field">
+        <span>Time</span>
+        <select name="time" required>
+          <option value="" disabled selected>Select</option>
+          {times.map((t) => <option value={label(t)}>{label(t)}</option>)}
+        </select>
+      </label>
+      <label class="field">
+        <span>Guests</span>
+        <select name="guests" required>
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => <option value={n} selected={n === 2}>{n}</option>)}
+          <option value="13+">13+</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Occasion</span>
+        <select name="occasion">
+          <option value="">None</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Date night</option>
+          <option>Office / team</option>
+          <option>Family get-together</option>
+        </select>
+      </label>
+      <label class="field full">
+        <span>Notes <em>(optional)</em></span>
+        <textarea name="notes" rows="2" placeholder="Seating preference, dietary needs…"></textarea>
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn--primary submit"><Icon name="whatsapp" /> Send on WhatsApp</button>
+    <p class="alt">Prefer to call? <a href={`tel:+${SITE.phoneClean}`}>{SITE.phone}</a></p>
+  </form>
+</dialog>
+
+<style>
+  .reserve {
+    width: min(560px, calc(100vw - 24px)); max-height: calc(100dvh - 24px);
+    padding: 0; border: 1px solid var(--line-strong); border-radius: var(--radius-lg);
+    background: var(--bg-2); color: var(--text); box-shadow: 0 40px 120px -20px #000;
+  }
+  .reserve::backdrop { background: rgba(8, 6, 5, 0.75); backdrop-filter: blur(4px); }
+  .reserve-form { padding: clamp(22px, 4vw, 36px); }
+  .reserve-head { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  .reserve-head h2 { font-size: 1.9rem; }
+  .reserve-head p { margin-top: 6px; color: var(--muted); font-size: 0.93rem; }
+  .close { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: transparent; border: 1px solid var(--line-strong); }
+  .close :global(svg) { width: 18px; height: 18px; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { display: grid; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  .field > span { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .field em { font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .field input, .field select, .field textarea {
+    width: 100%; min-height: 46px; padding: 10px 14px;
+    background: var(--bg); border: 1px solid var(--line-strong); border-radius: 12px; outline: none;
+    color-scheme: dark;
+  }
+  .field textarea { resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--amber); }
+  .submit { width: 100%; margin-top: 22px; }
+  .alt { margin-top: 14px; text-align: center; font-size: 0.88rem; color: var(--muted); }
+  .alt a { color: var(--amber); font-weight: 700; }
+  @media (max-width: 480px) { .fields { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  import { wa } from '../config/site';
+
+  const dlg = document.querySelector<HTMLDialogElement>('[data-reserve-dialog]')!;
+  const form = dlg.querySelector<HTMLFormElement>('[data-reserve-form]')!;
+  const date = form.querySelector<HTMLInputElement>('[data-date]')!;
+
+  const today = new Date();
+  const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  date.min = iso(today);
+  date.value = iso(today);
+
+  document.querySelectorAll('[data-reserve]').forEach((b) => b.addEventListener('click', () => dlg.showModal()));
+  dlg.querySelector('[data-reserve-close]')!.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const when = new Date(`${f.get('date')}T00:00`).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+    const lines = [
+      'Hi HakkaLand! I would like to reserve a table.',
+      `Name: ${f.get('name')}`,
+      `Date: ${when}`,
+      `Time: ${f.get('time')}`,
+      `Guests: ${f.get('guests')}`,
+      f.get('occasion') ? `Occasion: ${f.get('occasion')}` : '',
+      f.get('notes') ? `Notes: ${f.get('notes')}` : '',
+    ].filter(Boolean);
+    window.open(wa(lines.join('\n')), '_blank', 'noopener');
+    dlg.close();
+  });
+</script>

@@ -1,0 +1,5 @@
+---
+interface Props { veg: boolean }
+const { veg } = Astro.props;
+---
+<span class:list={['vm', veg ? 'vm--veg' : 'vm--nonveg']} role="img" aria-label={veg ? 'Vegetarian' : 'Non-vegetarian'}></span>

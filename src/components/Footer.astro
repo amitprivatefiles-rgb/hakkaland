@@ -1,204 +1,70 @@
 ---
-import NeonText from './NeonText.astro';
-import FretCorner from './FretCorner.astro';
+import Logo from './Logo.astro';
+import { SITE } from '../config/site';
 
-// We would normally import SITE from config here
-const SITE = {
-  phone: '+1 (555) 123-4567',
-  address: '123 Main Street, Hakka Town, NY',
-  name: 'HakkaLand'
-};
+interface Props { base?: string }
+const { base = '' } = Astro.props;
+const socials = Object.entries(SITE.socials).filter(([, url]) => url);
+const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <div class="footer-divider">
-    <FretCorner position="top-left" size={60} class="footer-fret" />
-    <FretCorner position="top-right" size={60} class="footer-fret" />
-    <div class="divider-line"></div>
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <Logo />
+      <p>{SITE.tagline} · Restaurant &amp; bar under the brick arches of Star Mall, Madhyamgram.</p>
+    </div>
+
+    <nav aria-label="Footer">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href={`${base}#menu`}>Menu</a></li>
+        <li><a href={`${base}#signatures`}>Signatures</a></li>
+        <li><a href={`${base}#bar`}>Bar</a></li>
+        <li><a href={`${base}#gallery`}>Gallery</a></li>
+        <li><a href="/menu">Printable menu</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h3>Visit</h3>
+      <ul>
+        <li>{SITE.address.line1}</li>
+        <li>{SITE.address.line2}</li>
+        <li>{SITE.address.line3} {SITE.address.pin}</li>
+        <li>{SITE.hours}</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li><a href={`tel:+${SITE.phoneClean}`}>{SITE.phone}</a></li>
+        <li><a href={SITE.whatsappUrl} target="_blank" rel="noopener">WhatsApp</a></li>
+        {socials.map(([name, url]) => <li><a href={url} target="_blank" rel="noopener" class="cap">{name}</a></li>)}
+      </ul>
+    </div>
   </div>
 
-  <div class="container footer-content">
-    <div class="footer-top">
-      <div class="footer-brand" id="footer-brand-trigger">
-        <NeonText text={SITE.name} class="giant-neon" />
-      </div>
-    </div>
-
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3 class="footer-heading eyebrow">Explore</h3>
-        <nav class="footer-nav">
-          <a href="#menu">Menu</a>
-          <a href="#bar">Bar</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#visit">Visit</a>
-          <a href="#reserve" data-modal-trigger="reserve-modal">Reserve</a>
-        </nav>
-      </div>
-
-      <div class="footer-col">
-        <h3 class="footer-heading eyebrow">Connect</h3>
-        <nav class="footer-nav">
-          <!-- TODO: update social links -->
-          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Zomato</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">District</a>
-        </nav>
-      </div>
-
-      <div class="footer-col">
-        <h3 class="footer-heading eyebrow">Contact</h3>
-        <div class="footer-contact">
-          <p>{SITE.address}</p>
-          <p><a href={`tel:${SITE.phone.replace(/[^0-9+]/g, '')}`}>{SITE.phone}</a></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="copyright">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
-    </div>
+  <div class="container footer-bottom">
+    <p>© {year} {SITE.name}. All rights reserved.</p>
+    <p>Prices exclusive of taxes · Menu subject to availability</p>
   </div>
 </footer>
 
 <style>
-  .site-footer {
-    background-color: var(--ink, #0E0B0A);
-    color: var(--cream, #F3E6D0);
-    position: relative;
-    padding-top: 4rem;
-    overflow: hidden;
-  }
-
-  .footer-divider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer-fret {
-    position: absolute;
-    top: 0;
-  }
-  .footer-fret[position="top-left"] { left: 0; }
-  .footer-fret[position="top-right"] { right: 0; }
-
-  .divider-line {
-    width: calc(100% - 140px);
-    height: 1px;
-    background-color: var(--cream, #F3E6D0);
-    opacity: 0.2;
-  }
-
-  .footer-content {
-    padding: 4rem 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
-
-  .footer-brand {
-    text-align: center;
-  }
-
-  /* Target the giant neon text specifically */
-  :global(.giant-neon) {
-    font-size: clamp(3rem, 10vw, 8rem);
-    line-height: 1;
-    display: inline-block;
-    /* We'll animate opacity via GSAP so start hidden */
-    opacity: 0; 
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .footer-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .footer-heading {
-    color: var(--neon, #FF2E4D);
-    margin-bottom: 1.5rem;
-  }
-
-  .footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .footer-nav a {
-    color: var(--cream, #F3E6D0);
-    text-decoration: none;
-    font-family: var(--font-body, 'Manrope', sans-serif);
-    transition: color 0.3s ease;
-  }
-
-  .footer-nav a:hover {
-    color: var(--neon, #FF2E4D);
-  }
-
-  .footer-contact p {
-    margin-bottom: 0.5rem;
-    font-family: var(--font-body, 'Manrope', sans-serif);
-    line-height: 1.6;
-  }
-  
-  .footer-contact a {
-    color: var(--cream, #F3E6D0);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-contact a:hover {
-    color: var(--neon, #FF2E4D);
-  }
-
+  .footer { border-top: 1px solid var(--line); padding-top: clamp(56px, 7vw, 88px); }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-brand p { margin-top: 16px; color: var(--muted); max-width: 34ch; font-size: 0.93rem; }
+  .footer h3 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
+  .footer ul { display: grid; gap: 10px; color: var(--muted); font-size: 0.93rem; }
+  .footer a:hover { color: var(--text); }
+  .cap { text-transform: capitalize; }
   .footer-bottom {
-    border-top: 1px solid rgba(243, 230, 208, 0.1); /* cream with opacity */
-    padding-top: 2rem;
-    text-align: center;
-    font-family: var(--font-body, 'Manrope', sans-serif);
-    font-size: 0.875rem;
-    opacity: 0.6;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+    margin-top: 56px; padding-block: 24px; border-top: 1px solid var(--line);
+    font-size: 0.82rem; color: #8a7b6e;
   }
+  @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+  @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
 </style>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const initFooter = () => {
-    const trigger = document.getElementById('footer-brand-trigger');
-    const neonText = document.querySelector('.giant-neon');
-    
-    if (trigger && neonText) {
-      gsap.to(neonText, {
-        opacity: 1,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: trigger,
-          start: 'top 80%',
-          once: true
-        }
-      });
-    }
-  };
-
-  document.addEventListener('DOMContentLoaded', initFooter);
-  document.addEventListener('astro:page-load', initFooter);
-</script>
