@@ -1,0 +1,119 @@
+---
+// MarqueeBand.astro
+---
+
+<section class="marquee-band">
+  <div class="marquee-container" data-direction="1">
+    <div class="marquee-content">
+      <span class="marquee-text">DIMSUM ✦ SATÉ ✦ SIZZLERS ✦ HAKKA NOODLES ✦ THAI CURRY ✦ BAO ✦ BAR ✦</span>
+      <span class="marquee-text">DIMSUM ✦ SATÉ ✦ SIZZLERS ✦ HAKKA NOODLES ✦ THAI CURRY ✦ BAO ✦ BAR ✦</span>
+      <span class="marquee-text">DIMSUM ✦ SATÉ ✦ SIZZLERS ✦ HAKKA NOODLES ✦ THAI CURRY ✦ BAO ✦ BAR ✦</span>
+    </div>
+  </div>
+  
+  <div class="marquee-container" data-direction="-1">
+    <div class="marquee-content reverse">
+      <span class="marquee-text">DIMSUM ✦ SATÉ ✦ SIZZLERS ✦ HAKKA NOODLES ✦ THAI CURRY ✦ BAO ✦ BAR ✦</span>
+      <span class="marquee-text">DIMSUM ✦ SATÉ ✦ SIZZLERS ✦ HAKKA NOODLES ✦ THAI CURRY ✦ BAO ✦ BAR ✦</span>
+      <span class="marquee-text">DIMSUM ✦ SATÉ ✦ SIZZLERS ✦ HAKKA NOODLES ✦ THAI CURRY ✦ BAO ✦ BAR ✦</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-band {
+    padding-block: var(--space-md);
+    background-color: var(--ink);
+    overflow: hidden;
+    position: relative;
+    z-index: var(--z-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .marquee-container {
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 25s linear infinite;
+  }
+  
+  .marquee-content.reverse {
+    animation: marquee-scroll-reverse 25s linear infinite;
+  }
+
+  .marquee-text {
+    font-family: var(--font-neon, 'Josefin Sans', sans-serif);
+    font-weight: 200;
+    font-size: var(--text-3xl, 3rem);
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--cream);
+    padding-right: 1ch;
+    transition: color 0.3s var(--ease-out-power3, ease-out), -webkit-text-stroke-color 0.3s;
+    cursor: default;
+  }
+
+  .marquee-text:hover {
+    color: var(--neon);
+    -webkit-text-stroke-color: var(--neon);
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); } /* Since we repeated it 3 times */
+  }
+
+  @keyframes marquee-scroll-reverse {
+    0% { transform: translateX(-33.333%); }
+    100% { transform: translateX(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content, .marquee-content.reverse {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Scroll velocity skewing effect
+    let proxy = { skew: 0 },
+        skewSetter = gsap.quickSetter(".marquee-container", "skewX", "deg"),
+        clamp = gsap.utils.clamp(-20, 20); // Limit max skew
+
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        let skew = clamp(self.getVelocity() / -150);
+        
+        // Only apply if there's a meaningful change
+        if (Math.abs(skew) > Math.abs(proxy.skew)) {
+          proxy.skew = skew;
+          gsap.to(proxy, {
+            skew: 0,
+            duration: 0.8,
+            ease: "power3",
+            overwrite: true,
+            onUpdate: () => skewSetter(proxy.skew)
+          });
+        }
+      }
+    });
+  });
+</script>

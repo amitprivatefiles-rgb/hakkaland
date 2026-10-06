@@ -1,0 +1,116 @@
+/* HakkaLand — one visual world: the restaurant at night.
+   Ink-dark room, the red neon sign, amber LED arches, cobalt-and-saffron floor tiles. */
+:root {
+  color-scheme: dark;
+  --ink: #120d0c;          /* the room after dark */
+  --ink-2: #1a1412;        /* booths, cards */
+  --ink-3: #241b18;        /* raised surfaces */
+  --line: rgba(244, 234, 222, 0.12);
+  --line-2: rgba(244, 234, 222, 0.22);
+  --text: #f4eade;
+  --muted: #b8a999;
+  --dim: #8a7b6d;
+  --neon: #ff3a4c;         /* the HakkaLand sign */
+  --neon-soft: rgba(255, 58, 76, 0.16);
+  --amber: #ffa145;        /* LED trace on the brick arches */
+  --brick: #b4472a;
+  --cobalt: #3e6fd4;       /* tile + day-time chairs */
+  --veg: #2e9d4f;
+  --nonveg: #c0392b;
+
+  --f-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --f-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --f-body: 'Manrope', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --f-han: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+
+  /* type scale (1.25) */
+  --t-xs: 0.78rem;
+  --t-sm: 0.875rem;
+  --t-md: 1rem;
+  --t-lg: 1.2rem;
+  --t-xl: 1.6rem;
+  --t-2xl: clamp(2rem, 1.4rem + 2.6vw, 3.2rem);
+  --t-3xl: clamp(2.8rem, 1.6rem + 5.6vw, 6.4rem);
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --wrap: 1240px;
+  --radius: 14px;
+  --header-h: 68px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: var(--t-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+::selection { background: var(--neon); color: #fff; }
+
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; line-height: 1.02; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h2 { font-size: var(--t-2xl); }
+h3 { font-size: var(--t-lg); letter-spacing: -0.01em; line-height: 1.2; }
+p { margin: 0; }
+.serif { font-family: var(--f-serif); font-weight: 400; font-style: italic; letter-spacing: 0; }
+.han { font-family: var(--f-han); font-weight: 600; }
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); }
+.section { padding-block: clamp(72px, 10vw, 128px); }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber);
+}
+.eyebrow::before { content: ''; width: 22px; height: 1px; background: currentColor; }
+.lede { color: var(--muted); font-size: var(--t-lg); max-width: 58ch; }
+.section-head { display: grid; gap: 14px; margin-bottom: clamp(32px, 5vw, 56px); }
+.section-head.split { grid-template-columns: 1fr; align-items: end; gap: 18px; }
+@media (min-width: 900px) { .section-head.split { grid-template-columns: 1.1fr 1fr; gap: 48px; } }
+
+/* buttons */
+.btn {
+  --b: var(--neon);
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px; border-radius: 999px;
+  font-weight: 700; font-size: var(--t-sm); letter-spacing: 0.02em; text-decoration: none;
+  border: 1px solid var(--b); background: var(--b); color: #fff; cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px -8px var(--neon), 0 0 0 4px var(--neon-soft); }
+.btn.ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
+.btn.ghost:hover { border-color: var(--text); box-shadow: none; }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* veg / non-veg marks (Indian convention) */
+.mark { display: inline-grid; place-items: center; width: 14px; height: 14px; border: 1.5px solid; border-radius: 3px; flex: none; }
+.mark.veg { border-color: var(--veg); }
+.mark.veg::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--veg); }
+.mark.non { border-color: var(--nonveg); }
+.mark.non::after { content: ''; width: 0; height: 0; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-bottom: 6px solid var(--nonveg); }
+
+.tag-best {
+  display: inline-block; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--amber); border: 1px solid rgba(255, 161, 69, 0.45); padding: 2px 7px; border-radius: 999px; white-space: nowrap;
+}
+
+/* scroll reveal — content is visible by default; motion is only added when JS + motion are allowed */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--text); color: var(--ink); padding: 10px 14px; border-radius: 8px; font-weight: 700; }
+.skip:focus { top: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

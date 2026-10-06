@@ -1,0 +1,256 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../../assets/img/hero-neon-night.webp';
+---
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <Image 
+      src={heroImg} 
+      alt="HakkaLand Neon Night Scene" 
+      class="hero-img" 
+      fetchpriority="high" 
+      loading="eager"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content container">
+    <div class="hero-text-wrapper">
+      <span class="eyebrow hero-eyebrow">CHINESE • ASIAN • CANTONESE</span>
+      <h1 class="hero-title">
+        <span class="line-wrap"><span class="line">Wok-fired.</span></span>
+        <span class="line-wrap"><span class="line">Neon-lit.</span></span>
+        <span class="line-wrap"><span class="line sub-line">Madhyamgram's Asian kitchen & bar.</span></span>
+      </h1>
+      
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="window.dispatchEvent(new CustomEvent('open-reserve'))">Reserve a Table</button>
+        <a href="#menu" class="btn btn-ghost">See the Menu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Cue -->
+  <div class="scroll-cue">
+    <div class="scroll-line">
+      <div class="scroll-dot"></div>
+    </div>
+  </div>
+
+  <!-- Decorative Lanterns -->
+  <div class="lanterns" aria-hidden="true">
+    <svg class="lantern lantern-1" viewBox="0 0 24 24"><path fill="var(--neon)" d="M12 2L9 8h6l-3-6zm0 20l3-6H9l3 6zm7-10c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7 7 3.13 7 7z" opacity="0.8"/></svg>
+    <svg class="lantern lantern-2" viewBox="0 0 24 24"><path fill="var(--ember)" d="M12 2L9 8h6l-3-6zm0 20l3-6H9l3 6zm7-10c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7 7 3.13 7 7z" opacity="0.6"/></svg>
+    <svg class="lantern lantern-3" viewBox="0 0 24 24"><path fill="var(--brick-lit)" d="M12 2L9 8h6l-3-6zm0 20l3-6H9l3 6zm7-10c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7 7 3.13 7 7z" opacity="0.7"/></svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: var(--ink);
+  }
+
+  /* Background & Parallax */
+  .hero-bg {
+    position: absolute;
+    inset: -20px; /* Buffer for parallax and zoom */
+    z-index: var(--z-base, 0);
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: kenBurns 20s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 20%, var(--ink) 90%),
+                linear-gradient(to bottom, rgba(14, 11, 10, 0.4) 0%, rgba(14, 11, 10, 0.8) 100%);
+    z-index: 1;
+  }
+
+  @keyframes kenBurns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
+
+  /* Content */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+  .hero-text-wrapper {
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    color: var(--saffron, #E8A33D);
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .hero-title {
+    margin: 0 0 var(--space-xl) 0;
+    color: var(--cream);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  
+  .line-wrap {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.1em; /* Prevent descender clipping */
+  }
+  
+  .line {
+    display: block;
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: var(--text-hero, clamp(3rem, 8vw, 6rem));
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    transform: translateY(100%);
+  }
+  
+  .line.sub-line {
+    font-size: var(--text-3xl, clamp(1.5rem, 4vw, 2.5rem));
+    font-style: normal;
+    color: rgba(243, 230, 208, 0.9); /* cream slightly muted */
+    margin-top: var(--space-sm);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Scroll Cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: rgba(243, 230, 208, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-dot {
+    width: 3px;
+    height: 15px;
+    background: var(--cream);
+    position: absolute;
+    left: -1px;
+    top: -15px;
+    border-radius: 2px;
+    animation: scrollDot 2s var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1)) infinite;
+  }
+
+  @keyframes scrollDot {
+    0% { transform: translateY(0); opacity: 1; }
+    80% { transform: translateY(75px); opacity: 0; }
+    100% { transform: translateY(75px); opacity: 0; }
+  }
+
+  /* Lanterns */
+  .lanterns {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 200px;
+    height: 300px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .lantern {
+    position: absolute;
+    transform-origin: top center;
+    animation: swing 6s ease-in-out infinite alternate;
+  }
+  .lantern-1 { width: 40px; top: 0; right: 20px; animation-duration: 5s; }
+  .lantern-2 { width: 30px; top: 40px; right: 80px; animation-duration: 7s; animation-delay: 1s; }
+  .lantern-3 { width: 50px; top: 80px; right: 0px; animation-duration: 6.5s; animation-delay: 2s; }
+
+  @keyframes swing {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img { animation: none; }
+    .lantern { animation: none; }
+    .scroll-dot { animation: none; }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import SplitType from 'split-type';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Parallax effect on mouse move
+    const heroSection = document.querySelector('.hero');
+    const heroBg = document.querySelector('.hero-bg');
+    
+    if (heroSection && heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 15; // Max 15px
+        const y = (e.clientY / window.innerHeight - 0.5) * 15;
+        
+        gsap.to(heroBg, {
+          x: x,
+          y: y,
+          duration: 1,
+          ease: 'power3.out'
+        });
+      });
+    }
+
+    // Reveal Animation
+    const chars = new SplitType('.line', { types: 'chars,words' });
+    
+    const tl = gsap.timeline({ delay: 0.5 }); // Delay slightly to let preloader finish if present
+    
+    tl.to('.hero-eyebrow', {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    })
+    .to('.line', {
+      y: '0%',
+      duration: 1,
+      stagger: 0.15,
+      ease: 'expo.out'
+    }, "-=0.4")
+    .to('.hero-actions', {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, "-=0.6");
+  });
+</script>

@@ -1,0 +1,197 @@
+---
+import { Image } from 'astro:assets';
+import balloonsImg from '../../assets/img/day-lattice-balloons.webp';
+import skilletsImg from '../../assets/img/wok-spread-skillets.webp';
+import cheersImg from '../../assets/img/drinks-cheers.webp';
+import neonImg from '../../assets/img/hero-neon-night.webp';
+import { SITE } from '../../config/site';
+---
+
+<section class="celebrate" id="celebrate">
+  <div class="container">
+    <div class="text-center">
+      <p class="eyebrow">CELEBRATIONS</p>
+      <h2 class="section-title">Every occasion, under the arches</h2>
+    </div>
+
+    <div class="celebrate-grid">
+      <div class="celeb-card">
+        <div class="img-wrap arch-frame">
+          <Image src={balloonsImg} alt="Birthdays" />
+        </div>
+        <div class="content">
+          <h3>Birthdays</h3>
+          <p>Balloons, cake, and a table under the arches</p>
+        </div>
+      </div>
+      <div class="celeb-card">
+        <div class="img-wrap arch-frame">
+          <Image src={skilletsImg} alt="Group Dinners" />
+        </div>
+        <div class="content">
+          <h3>Group Dinners</h3>
+          <p>Shared skillets, shared stories</p>
+        </div>
+      </div>
+      <div class="celeb-card">
+        <div class="img-wrap arch-frame">
+          <Image src={cheersImg} alt="Office Parties" />
+        </div>
+        <div class="content">
+          <h3>Office Parties</h3>
+          <p>Team celebrations with cocktails and wok-fired spreads</p>
+        </div>
+      </div>
+      <div class="celeb-card">
+        <div class="img-wrap arch-frame">
+          <Image src={neonImg} alt="Festive Nights" />
+        </div>
+        <div class="content">
+          <h3>Festive Nights</h3>
+          <p>Diwali, Christmas, New Year &mdash; we set the mood</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrapper text-center">
+      <a 
+        href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hi! I'd like to plan a celebration at HakkaLand. Could you help me with the details?")}`} 
+        class="btn btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Plan a party
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .celebrate {
+    padding: var(--space-2xl) 0;
+    background: var(--soot, #1A1412);
+    color: var(--cream);
+  }
+
+  .text-center { text-align: center; }
+
+  .eyebrow {
+    font-family: var(--font-neon);
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: var(--space-xl);
+  }
+
+  .celebrate-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .celebrate-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .celeb-card {
+    position: relative;
+    group: card;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .arch-frame {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 3/4;
+    clip-path: path('M0,150 C0,67.15 67.15,0 150,0 L250,0 C332.85,0 400,67.15 400,150 L400,533 L0,533 Z'); /* Simplified arch */
+    clip-path: polygon(0% 100%, 100% 100%, 100% 30%, 50% 0%, 0% 30%); /* fallback */
+    border-radius: 200px 200px 0 0; /* Standard arch approach */
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+    transition: transform var(--duration-base) var(--ease-out-power3), box-shadow var(--duration-base);
+  }
+
+  .celeb-card:hover .arch-frame {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .arch-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .celeb-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .content h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+    color: var(--saffron);
+  }
+
+  .content p {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .cta-wrapper {
+    margin-top: var(--space-xl);
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--neon);
+    color: white;
+    font-family: var(--font-neon);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--brick-lit);
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.from('.celeb-card', {
+      scrollTrigger: {
+        trigger: '.celebrate-grid',
+        start: 'top 80%',
+      },
+      y: 50,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1,
+      ease: 'power3.out'
+    });
+  });
+</script>

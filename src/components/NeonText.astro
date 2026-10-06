@@ -1,0 +1,70 @@
+---
+export interface Props {
+  text?: string;
+  tag?: string;
+  class?: string;
+}
+
+const { text = 'HakkaLand', tag = 'span', class: className } = Astro.props;
+const Element = tag as any;
+---
+
+<Element class={`neon-text ${className || ''}`}>
+  {text}
+</Element>
+
+<style>
+  .neon-text {
+    font-family: var(--font-neon, 'Josefin Sans', sans-serif);
+    font-weight: 200;
+    color: var(--neon, #FF2E4D);
+    animation: neon-flicker 1.2s ease-in-out forwards, neon-breathe 4s ease-in-out 1.2s infinite alternate;
+  }
+
+  @keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon, #FF2E4D),
+        0 0 40px var(--neon, #FF2E4D),
+        0 0 80px var(--neon, #FF2E4D);
+      opacity: 1;
+    }
+    20%, 24%, 55% {
+      text-shadow: none;
+      opacity: 0.1;
+    }
+  }
+
+  @keyframes neon-breathe {
+    from {
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon, #FF2E4D),
+        0 0 40px var(--neon, #FF2E4D),
+        0 0 80px var(--neon, #FF2E4D);
+    }
+    to {
+      text-shadow:
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 10px var(--neon, #FF2E4D),
+        0 0 20px var(--neon, #FF2E4D),
+        0 0 40px var(--neon, #FF2E4D);
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    .neon-text {
+      animation: none;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon, #FF2E4D),
+        0 0 40px var(--neon, #FF2E4D),
+        0 0 80px var(--neon, #FF2E4D);
+    }
+  }
+</style>

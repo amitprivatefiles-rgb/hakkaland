@@ -1,0 +1,194 @@
+---
+---
+
+<section class="love-notes" id="reviews">
+  <div class="container text-center">
+    <p class="eyebrow">WHAT GUESTS SAY</p>
+    <h2 class="section-title">Love notes</h2>
+
+    <div class="ratings-row">
+      <div class="rating-badge">
+        <span class="rating-num" data-target="4.2">0.0</span>★ District &middot; <span class="count" data-target="348">0</span> ratings
+      </div>
+      <div class="rating-badge">
+        <span class="rating-num" data-target="4.1">0.0</span>★ Restaurant Guru &middot; <span class="count" data-target="570">0</span> reviews
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <!-- Placeholder Testimonials -->
+      <div class="review-card" data-placeholder="true">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The ambience is incredible &mdash; brick arches, warm lights, tufted booths. Feels like a hidden gem in Madhyamgram."</p>
+        <p class="review-author">&mdash; Arjun S.</p>
+      </div>
+      
+      <div class="review-card" data-placeholder="true">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"We ordered the chicken sizzler and Schezwan fried rice. Generous portions and the staff couldn't have been friendlier."</p>
+        <p class="review-author">&mdash; Priya M.</p>
+      </div>
+      
+      <div class="review-card" data-placeholder="true">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Perfect spot for a group dinner. The dimsum was fresh, the bar is well-stocked, and the decor makes every photo Instagram-worthy."</p>
+        <p class="review-author">&mdash; Rahul D.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .love-notes {
+    padding: var(--space-2xl) 0;
+    background: var(--ink);
+    color: var(--cream);
+    overflow: hidden;
+  }
+
+  .text-center { text-align: center; }
+
+  .eyebrow {
+    font-family: var(--font-neon);
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-style: italic;
+    margin-bottom: var(--space-xl);
+  }
+
+  .ratings-row {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .rating-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: var(--font-neon);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rating-num, .count {
+    font-weight: bold;
+    color: var(--saffron);
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .review-card {
+    background: rgba(26, 20, 18, 0.6); /* var(--soot) with opacity */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: var(--space-xl);
+    text-align: left;
+    animation: drift 6s ease-in-out infinite alternate;
+  }
+
+  .review-card:nth-child(2) {
+    animation-delay: -2s;
+    transform: translateY(20px);
+  }
+  
+  .review-card:nth-child(3) {
+    animation-delay: -4s;
+  }
+
+  @keyframes drift {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+  }
+
+  .stars {
+    color: var(--saffron);
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .review-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+    font-style: italic;
+  }
+
+  .review-author {
+    font-family: var(--font-neon);
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    color: var(--ember);
+    margin: 0;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Number counter animation
+    const numbers = document.querySelectorAll('.rating-num');
+    const counts = document.querySelectorAll('.count');
+
+    ScrollTrigger.create({
+      trigger: '.ratings-row',
+      start: 'top 80%',
+      onEnter: () => {
+        numbers.forEach((el: any) => {
+          const target = parseFloat(el.dataset.target);
+          let obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: 'power3.out',
+            onUpdate: () => {
+              el.innerText = obj.val.toFixed(1);
+            }
+          });
+        });
+
+        counts.forEach((el: any) => {
+          const target = parseInt(el.dataset.target, 10);
+          let obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: 'power3.out',
+            onUpdate: () => {
+              el.innerText = Math.floor(obj.val).toString();
+            }
+          });
+        });
+      },
+      once: true
+    });
+  });
+</script>

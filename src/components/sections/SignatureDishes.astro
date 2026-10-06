@@ -1,0 +1,295 @@
+---
+import { Image } from 'astro:assets';
+import baoImg from '../../assets/img/bao-oyster-bbq.webp';
+import sateImg from '../../assets/img/sate-hibachi.webp';
+import skewersImg from '../../assets/img/grilled-herb-skewers.webp';
+import dimsumImg from '../../assets/img/dimsum-steamer-1.webp';
+import nasiImg from '../../assets/img/nasi-goreng-banana-leaf.webp';
+import chickenImg from '../../assets/img/crispy-chicken-plate.webp';
+import sizzlerImg from '../../assets/img/glazed-sizzler-chicken.webp';
+import brownieImg from '../../assets/img/sizzling-brownie.webp';
+
+const signatures = [
+  { name: 'Oyster BBQ Bao', image: baoImg, desc: '3 pcs, oyster BBQ chicken in fluffy steamed buns', price: '₹249', bestSeller: true },
+  { name: 'Balinese Saté', image: sateImg, desc: 'Southeast Asian chicken skewers, grilled over charcoal', price: '₹299', bestSeller: true },
+  { name: 'Herb Grilled Skewers', image: skewersImg, desc: 'Herb-marinated skewers with prawn crackers', price: '₹299', bestSeller: false },
+  { name: 'Har Gao Dimsum', image: dimsumImg, desc: 'Crystal prawn dumplings, steamed to order, 6 pcs', price: '₹420', bestSeller: true },
+  { name: 'Nasi Goreng', image: nasiImg, desc: 'Indonesian fried rice with sunny egg and prawns on banana leaf', price: '₹199', bestSeller: false },
+  { name: 'Crispy Chicken', image: chickenImg, desc: 'Golden-fried chicken on stoneware', price: '₹299', bestSeller: false },
+  { name: 'Wok Tossed Chicken Sizzler', image: sizzlerImg, desc: 'Dark-glazed chicken sizzler with rice and wok-tossed veg', price: '₹449', bestSeller: true },
+  { name: 'Sizzling Brownie', image: brownieImg, desc: 'Walnut brownie on a sizzler plate, vanilla ice cream, chocolate sauce', price: '₹209', bestSeller: false },
+];
+---
+
+<section class="signatures-section" id="signatures">
+  <div class="bg-pattern"></div>
+  
+  <div class="signatures-header container">
+    <span class="eyebrow">SIGNATURES</span>
+    <h2 class="section-title">From the Wok</h2>
+  </div>
+
+  <div class="scroll-wrapper">
+    <div class="cards-container">
+      {signatures.map((dish, index) => (
+        <div class="dish-card">
+          <div class="card-visual">
+            <Image src={dish.image} alt={dish.name} class="dish-img" />
+            {dish.bestSeller && <div class="chop-seal">Best<br/>Seller</div>}
+          </div>
+          <div class="card-content">
+            <h3 class="dish-name">{dish.name}</h3>
+            <p class="dish-desc">{dish.desc}</p>
+            <div class="dish-price">{dish.price}</div>
+          </div>
+        </div>
+      ))}
+      <div class="end-card">
+        <a href="#menu" class="explore-link">Explore the full menu &rarr;</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="progress-indicator container">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+  </div>
+</section>
+
+<style>
+  .signatures-section {
+    position: relative;
+    background-color: var(--soot);
+    padding-block: var(--space-2xl);
+    overflow: hidden;
+  }
+
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: radial-gradient(var(--cream) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .signatures-header {
+    position: relative;
+    z-index: 10;
+    margin-bottom: var(--space-xl);
+  }
+
+  .eyebrow {
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-title {
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: var(--text-4xl, clamp(2rem, 5vw, 3.5rem));
+    color: var(--cream);
+  }
+
+  .scroll-wrapper {
+    position: relative;
+    z-index: 10;
+    /* Hide scrollbar but allow swipe on mobile */
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scroll-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards-container {
+    display: flex;
+    gap: var(--space-lg);
+    padding: 0 var(--space-md);
+    width: max-content;
+  }
+
+  .dish-card {
+    width: 280px;
+    background-color: var(--soot);
+    border: 1px solid rgba(243, 230, 208, 0.1);
+    border-radius: 140px 140px 12px 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    perspective: 800px;
+    transition: transform 0.4s var(--ease-out-power3, ease-out), box-shadow 0.4s;
+  }
+
+  .dish-card:hover {
+    transform: translateY(-10px) rotateX(6deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+
+  .card-visual {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 140px 140px 0 0;
+  }
+
+  .dish-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1));
+  }
+
+  .dish-card:hover .dish-img {
+    transform: scale(1.06);
+  }
+
+  .chop-seal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--lacquer, #B71C2B);
+    color: var(--cream);
+    font-family: var(--font-neon, 'Josefin Sans', sans-serif);
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid var(--cream);
+    transform: rotate(10deg);
+    line-height: 1.1;
+  }
+
+  .card-content {
+    padding: var(--space-md);
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dish-name {
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: var(--text-lg, 1.25rem);
+    color: var(--cream);
+    margin-bottom: var(--space-xs);
+  }
+
+  .dish-desc {
+    color: rgba(243, 230, 208, 0.7);
+    font-size: var(--text-sm, 0.875rem);
+    margin-bottom: var(--space-md);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .dish-price {
+    font-family: var(--font-neon, 'Josefin Sans', sans-serif);
+    font-size: var(--text-lg, 1.25rem);
+    color: var(--saffron);
+  }
+
+  .end-card {
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+  }
+
+  .explore-link {
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: var(--text-2xl, 2rem);
+    color: var(--cream);
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.2;
+    transition: color 0.3s;
+  }
+  
+  .explore-link:hover {
+    color: var(--neon);
+  }
+
+  .progress-indicator {
+    margin-top: var(--space-xl);
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .progress-indicator {
+      display: block;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 2px;
+      background-color: rgba(243, 230, 208, 0.2);
+      position: relative;
+    }
+    .progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background-color: var(--ember);
+    }
+    /* Disable native scroll on desktop to let ScrollTrigger take over */
+    .scroll-wrapper {
+      overflow: hidden;
+    }
+    .cards-container {
+      padding-left: 5vw;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth >= 768) {
+      const container = document.querySelector('.cards-container');
+      const wrapper = document.querySelector('.scroll-wrapper');
+      
+      if (!container || !wrapper) return;
+
+      const getScrollAmount = () => {
+        let containerWidth = container.scrollWidth;
+        return -(containerWidth - window.innerWidth + 100);
+      };
+
+      const tween = gsap.to(container, {
+        x: getScrollAmount,
+        ease: "none"
+      });
+
+      ScrollTrigger.create({
+        trigger: ".signatures-section",
+        start: "top top",
+        end: () => `+=${getScrollAmount() * -1}`,
+        pin: true,
+        animation: tween,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          gsap.to('.progress-fill', {
+            width: `${self.progress * 100}%`,
+            duration: 0.1,
+            ease: 'none'
+          });
+        }
+      });
+    }
+  });
+</script>

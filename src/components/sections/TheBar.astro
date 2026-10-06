@@ -1,0 +1,239 @@
+---
+import { Image } from 'astro:assets';
+import barShelfImg from '../../assets/img/bar-shelf.webp';
+import blueLagoonImg from '../../assets/img/drinks-blue-lagoon.webp';
+import margaritaImg from '../../assets/img/drinks-margarita-icedtea.webp';
+import mojitoImg from '../../assets/img/drinks-mojito.webp';
+import masonJarsImg from '../../assets/img/drinks-mason-jars.webp';
+import limeSodaImg from '../../assets/img/drinks-lime-soda.webp';
+import cheersImg from '../../assets/img/drinks-cheers.webp';
+import neonMocktailImg from '../../assets/img/neon-red-mocktail.webp';
+
+import menu from '../../data/menu.json';
+const beverages = menu.find(cat => cat.category === 'Beverages')?.items || [];
+---
+
+<section class="the-bar" id="bar">
+  <div class="bar-banner">
+    <Image src={barShelfImg} alt="Illuminated bar shelf" class="banner-img" />
+    <svg class="glint-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" />
+      <line x1="0" y1="80" x2="100" y2="80" stroke="rgba(255,255,255,0.2)" stroke-width="0.5" />
+    </svg>
+    <div class="banner-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="bar-header text-center">
+      <p class="eyebrow">THE BAR</p>
+      <h2 class="bar-title">Pour, after 7</h2>
+    </div>
+
+    <div class="bento-grid">
+      <div class="drink-card large" data-color="blue">
+        <Image src={blueLagoonImg} alt="Blue Lagoon" />
+        <div class="wave"></div>
+      </div>
+      <div class="drink-card" data-color="amber">
+        <Image src={margaritaImg} alt="Margarita" />
+        <div class="wave"></div>
+      </div>
+      <div class="drink-card" data-color="green">
+        <Image src={mojitoImg} alt="Mojito" />
+        <div class="wave"></div>
+      </div>
+      <div class="drink-card" data-color="amber">
+        <Image src={masonJarsImg} alt="Mason Jars" />
+        <div class="wave"></div>
+      </div>
+      <div class="drink-card" data-color="amber">
+        <Image src={limeSodaImg} alt="Lime Soda" />
+        <div class="wave"></div>
+      </div>
+      <div class="drink-card" data-color="amber">
+        <Image src={cheersImg} alt="Cheers" />
+        <div class="wave"></div>
+      </div>
+      <div class="drink-card" data-color="red">
+        <Image src={neonMocktailImg} alt="Neon Mocktail" />
+        <div class="wave"></div>
+      </div>
+    </div>
+
+    <div class="drinks-list">
+      {beverages.map((drink) => (
+        <div class="drink-row">
+          <span class="drink-name">{drink.name}</span>
+          <span class="drink-dots"></span>
+          <span class="drink-price">₹{drink.price}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="bar-footer text-center">
+      <p class="full-bar-line">Cocktails, beers & spirits at the bar. Ask your server for today's pours.</p>
+      <p class="disclaimer">Please drink responsibly &middot; 25+ for alcohol in West Bengal</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .the-bar {
+    background: linear-gradient(to bottom, var(--teal, #2E8C8C) 0%, var(--ink, #0E0B0A) 100%);
+    color: var(--cream, #F3E6D0);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .bar-banner {
+    position: relative;
+    height: 40vh;
+    min-height: 300px;
+    overflow: hidden;
+    margin-bottom: var(--space-xl);
+  }
+
+  .banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .glint-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    animation: pan 4s linear infinite alternate;
+  }
+
+  @keyframes pan {
+    from { transform: translateY(-5%); }
+    to { transform: translateY(5%); }
+  }
+
+  .banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, var(--teal));
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .bar-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-style: italic;
+    margin-bottom: var(--space-xl);
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+    }
+    .drink-card.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  .drink-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .drink-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-base) var(--ease-out-power3);
+  }
+
+  .wave {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    mix-blend-mode: overlay;
+  }
+  
+  .drink-card[data-color="blue"] .wave { background: rgba(35, 71, 201, 0.4); }
+  .drink-card[data-color="green"] .wave { background: rgba(47, 107, 58, 0.4); }
+  .drink-card[data-color="amber"] .wave { background: rgba(232, 163, 61, 0.4); }
+  .drink-card[data-color="red"] .wave { background: rgba(183, 28, 43, 0.4); }
+
+  .drink-card:hover img {
+    transform: scale(1.05);
+  }
+  .drink-card:hover .wave {
+    transform: translateY(0);
+  }
+
+  .drinks-list {
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .drink-row {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 12px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+  }
+
+  .drink-dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted rgba(255,255,255,0.3);
+    margin: 0 12px 6px;
+  }
+
+  .drink-price {
+    font-family: var(--font-neon);
+    color: var(--ember);
+  }
+
+  .full-bar-line {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .disclaimer {
+    font-size: 0.875rem;
+    opacity: 0.6;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.from('.drink-card', {
+      scrollTrigger: {
+        trigger: '.bento-grid',
+        start: 'top 80%',
+      },
+      y: 40,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  });
+</script>
