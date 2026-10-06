@@ -57,7 +57,7 @@ import { SITE } from '../config/site';
 
   .sheet { padding-block: 56px 80px; }
   .head { text-align: center; padding-bottom: 32px; margin-bottom: 40px; border-bottom: 1px solid var(--line-strong); }
-  .head :global(.logo) { font-size: 3rem; }
+  .head :global(.logo) { --logo-h: 56px; }
   .tagline { margin-top: 10px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
   .meta { margin-top: 14px; color: var(--muted); font-size: 0.9rem; }
   .legend { margin-top: 16px; display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted); }
@@ -83,8 +83,7 @@ import { SITE } from '../config/site';
     .no-print { display: none !important; }
     .sheet { padding: 0; max-width: none; }
     .head { border-color: #ccc; margin-bottom: 20px; padding-bottom: 16px; }
-    .head :global(.logo-hakka) { color: #111; }
-    .head :global(.logo-land) { text-shadow: none; }
+    .head :global(.logo img) { filter: invert(1); } /* white logo → black on paper */
     .meta, .legend, .note, .desc, .foot { color: #555; }
     .vars { color: #222; }
     .dots { border-color: #bbb; }

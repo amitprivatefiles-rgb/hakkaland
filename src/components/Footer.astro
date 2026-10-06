@@ -55,6 +55,7 @@ const year = new Date().getFullYear();
 <style>
   .footer { border-top: 1px solid var(--line); padding-top: clamp(56px, 7vw, 88px); }
   .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-brand :global(.logo) { --logo-h: 36px; }
   .footer-brand p { margin-top: 16px; color: var(--muted); max-width: 34ch; font-size: 0.93rem; }
   .footer h3 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
   .footer ul { display: grid; gap: 10px; color: var(--muted); font-size: 0.93rem; }
